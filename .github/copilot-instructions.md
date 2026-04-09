@@ -1,45 +1,83 @@
-# Copilot Instructions
+# Copilot Instructions — ATNexusLab/skills
 
-## Protocolo de Resposta Padrão (9 Etapas Obrigatórias)
+## Contexto
 
-Este protocolo deve ser seguido **literalmente em TODA mensagem recebida**, sem exceção.
+Este é o **repositório de agentes e skills** da organização ATNexusLab.  
+Propósito: manter um time de IA reutilizável, instalável em qualquer projeto via `npx skills add ATNexusLab/skills`.
 
----
-
-### Etapas
-
-| # | Ação | Detalhe |
-|---|------|---------|
-| 1 | **Receber mensagem** | — |
-| 2 | **Consultar conhecimentos relevantes** | Ler: `todo.md`, `history.md`, `copilot-instructions.md`, `docs/**`, `lessons.md`, skills relevantes |
-| 3 | **Planejar e apresentar** | Mostrar plano detalhado ao usuário antes de agir |
-| 4 | **Aguardar aprovação explícita** | Sem aprovação, **não executar** |
-| 5 | **Registrar task no todo.md** | Após aprovação, adicionar entry no `.github/tasks/todo.md` |
-| 6 | **Migrar tasks finalizadas** | Mover tasks com `[x]` do `todo.md` para o `history.md` |
-| 7 | **Executar na ordem do todo.md** | Seguir a ordem definida |
-| 8 | **Atualizar documentação** | Atualizar `docs/**`, `todo.md`, `lessons.md` ao finalizar |
-| 9 | **Relatório final** | Apresentar o que foi feito e quais conhecimentos foram utilizados |
-
-> **OBS:** Toda vez que o usuário corrigir um erro do agente, inserir o conhecimento imediatamente no `lessons.md`.
+**Stack deste repositório:** Markdown, YAML frontmatter, Bash (scripts opcionais de agents).  
+**Idioma de todo conteúdo:** Português (pt-BR).
 
 ---
 
-## Contexto do Repositório
+## Protocolo de Resposta (9 Etapas — Obrigatório)
 
-Este é o repositório de skills da organização **ATNexusLab**, compatível com o CLI [vercel-labs/skills](https://github.com/vercel-labs/skills).
+| # | Ação |
+|---|------|
+| 1 | Receber mensagem |
+| 2 | Consultar: `todo.md`, `history.md`, `lessons.md`, skills relevantes |
+| 3 | Planejar e apresentar ao usuário |
+| 4 | Aguardar aprovação explícita — sem aprovação, não executar |
+| 5 | Registrar task no `todo.md` |
+| 6 | Migrar tasks `[x]` do `todo.md` para `history.md` |
+| 7 | Executar na ordem do `todo.md` |
+| 8 | Atualizar `lessons.md` e documentação |
+| 9 | Relatório final |
 
-**Comando de instalação:**
-```sh
-npx skills add ATNexusLab/skills
-bunx skills add ATNexusLab/skills
-```
+> Quando o usuário corrigir um erro, registrar **imediatamente** em `lessons.md`.
 
-**Estrutura de skills:**
-- `skills/.curated/` — Skills estáveis, prontas para produção
-- `skills/.experimental/` — Skills em desenvolvimento
-- `skills/.system/` — Skills internas (não aparecem por padrão)
+---
 
-Cada skill é uma pasta contendo um `SKILL.md` com frontmatter YAML (`name` e `description` obrigatórios).
+## Roster de Agentes
+
+Quando a tarefa exigir especialidade, delegar ao agente correspondente:
+
+| Agente | Quando Chamar |
+|--------|---------------|
+| `specs-collector` | Levantar requisitos antes de qualquer implementação |
+| `architect` | Decisões técnicas, tradeoffs, ADRs |
+| `test-driven-developer` | Implementação com cobertura TDD |
+| `backend` | APIs, serviços, integrações de servidor |
+| `frontend` | Componentes, páginas, interfaces web |
+| `ui-ux-specialist` | Spec de UX, fluxos, acessibilidade |
+| `mobile-expert` | Features mobile, builds, plataforma |
+| `sql-dba` | Schemas SQL, migrations, queries |
+| `nosql-dba` | Modelagem NoSQL, padrões de acesso |
+| `pr-reviewer` | Review de PRs (segurança, lógica, testes) |
+| `security-analyst` | Auditoria OWASP, CVEs, secrets |
+| `github-operator` | Operações GitHub CLI/API |
+| `performance-analyst` | Profiling, benchmarks, otimizações |
+| `instructions-expert` | Criar/atualizar instruções Copilot CLI |
+
+---
+
+## Protocolo de Escalonamento
+
+1. Se bloqueado: declare explicitamente o que está bloqueando e o que precisa para continuar.
+2. Para decisões de arquitetura: chamar `architect` antes de implementar.
+3. Para findings de segurança críticos: parar tudo e reportar imediatamente.
+4. Para ambiguidade de produto/UX: consultar o usuário diretamente.
+
+---
+
+## Protocolo de Reunião (Multi-Agent)
+
+Para tarefas complexas que requerem múltiplas especialidades:
+1. Orquestrador recebe o problema e cria plano no `todo.md`.
+2. Delega sequencialmente aos agentes relevantes via subagents.
+3. Cada agente entrega seu resultado antes do próximo iniciar.
+4. Orquestrador sintetiza e reporta ao usuário.
+
+---
+
+## Nunca Faça
+
+- **Nunca** crie agente/skill sem frontmatter YAML completo (`name` + `description`).
+- **Nunca** mova para `.curated/` sem uso real validado em produção.
+- **Nunca** acumule itens `[x]` no `todo.md` — mover para `history.md` antes de nova task.
+- **Nunca** abra PR com trabalho em andamento.
+- **Nunca** tome decisões de arquitetura sem consultar `architect`.
+- **Nunca** implemente sem spec — usar `specs-collector` primeiro.
 
 ---
 
@@ -50,4 +88,5 @@ Cada skill é uma pasta contendo um `SKILL.md` com frontmatter YAML (`name` e `d
 | `.github/tasks/todo.md` | Tasks pendentes e em andamento |
 | `.github/tasks/history.md` | Tasks concluídas |
 | `lessons.md` | Lições aprendidas |
-| `README.md` | Documentação pública do repositório |
+| `skills/.system/template/SKILL.md` | Spec completa para criar agentes/skills |
+| `skills/.system/creating-agents/SKILL.md` | Guia para criar novos agentes |

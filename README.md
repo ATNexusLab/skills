@@ -1,10 +1,35 @@
-# Copilot Instructions — ATNexusLab Skills
+# ATNexusLab/skills — Repositório de Agentes
 
-Repositório central de skills da organização **ATNexusLab**, compatível com o ecossistema [skills.sh](https://skills.sh).  
-Skills são instaladas em qualquer projeto com um único comando:
+Repositório central de **agentes e skills** da organização ATNexusLab.  
+Compatível com o ecossistema [skills.sh](https://skills.sh) — instale em qualquer projeto com um único comando:
 
 ```sh
 npx skills add ATNexusLab/skills
+# ou
+bunx skills add ATNexusLab/skills
+```
+
+---
+
+## O que é este repositório
+
+Um **time de IA reutilizável** que você puxa para qualquer projeto. Cada agente é um especialista com persona, workflow preciso e restrições de ferramentas definidas. O objetivo é ter o mesmo time de alta qualidade em todos os projetos da organização.
+
+### Arquitetura de Duas Camadas
+
+```
+CAMADA 1 — Global Pessoal
+~/.copilot/
+├── copilot-instructions.md     ← regras pessoais cross-projeto
+├── agents/                     ← custom agents pessoais (.agent.md)
+└── skills/                     ← skills pessoais (SKILL.md)
+
+CAMADA 2 — Projeto (via npx install)
+projeto/
+├── .github/
+│   ├── copilot-instructions.md          ← orquestrador lean do projeto
+│   ├── agents/                          ← custom agents ativos (.agent.md copiados daqui)
+│   └── skills/                          ← skills instaladas automaticamente
 ```
 
 ---
@@ -13,151 +38,87 @@ npx skills add ATNexusLab/skills
 
 ```
 skills/
-├── .curated/       # Skills estáveis, prontas para produção
-├── .experimental/  # Skills em desenvolvimento ou validação
-└── .system/        # Skills internas (não aparecem publicamente)
+├── .curated/
+│   ├── agents/     ← agentes estáveis, prontos para produção
+│   └── skills/     ← skills estáveis, prontas para produção
+├── .experimental/
+│   ├── agents/     ← 14 agentes em desenvolvimento (SKILL.md + .agent.md)
+│   └── skills/     ← skills em desenvolvimento
+└── .system/
+    ├── template/           ← template de referência (spec completa)
+    └── creating-agents/    ← meta-agente para criar novos agentes
 ```
 
-Cada skill é uma **pasta** contendo obrigatoriamente um `SKILL.md` com frontmatter YAML:
+Cada agente em `.experimental/agents/` contém dois arquivos:
 
-```markdown
----
-name: nome-da-skill
-description: Uma frase clara e objetiva do que a skill faz e quando usar.
+| Arquivo | Propósito |
+|---------|-----------|
+| `SKILL.md` | Workflow detalhado — carregado automaticamente como skill |
+| `NOME.agent.md` | Template de custom agent — copie para `.github/agents/` no seu projeto |
+
 ---
 
-# Conteúdo da skill...
+## O Time — 14 Agentes
+
+### Time de Processo
+
+| Agente | Quando Usar |
+|--------|-------------|
+| `specs-collector` | Levantar requisitos de uma feature ou projeto |
+| `test-driven-developer` | Implementar com ciclo TDD completo (red → green → refactor) |
+| `pr-reviewer` | Revisar pull requests (segurança, lógica, testes, estilo) |
+| `github-operator` | Operações GitHub via CLI/API (issues, PRs, releases, workflows) |
+| `security-analyst` | Auditar código, dependências e configurações por vulnerabilidades |
+| `instructions-expert` | Criar ou atualizar instruções do Copilot CLI (todos os 5 tipos) |
+| `performance-analyst` | Identificar gargalos com dados, fazer benchmarks e otimizar |
+
+### Time de Engenharia
+
+| Agente | Quando Usar |
+|--------|-------------|
+| `architect` | Tomar decisões técnicas, avaliar tradeoffs, criar ADRs |
+| `backend` | Implementar APIs, serviços, jobs e integrações de servidor |
+| `frontend` | Implementar componentes, páginas e interfaces web |
+| `ui-ux-specialist` | Criar specs de UX, fluxos de usuário e critérios de acessibilidade |
+| `mobile-expert` | Implementar features mobile (React Native, Flutter, Swift, Kotlin) |
+| `sql-dba` | Schemas SQL, migrations, queries complexas e índices |
+| `nosql-dba` | Modelagem NoSQL orientada a padrões de acesso |
+
+---
+
+## Como Usar
+
+### Instalar no Projeto
+
+```sh
+npx skills add ATNexusLab/skills
 ```
 
-> `name` e `description` são obrigatórios. A `description` é usada pelo agente para decidir quando carregar a skill — escreva com precisão.
+Isso copia os `SKILL.md` para `.github/skills/` do projeto. As skills são carregadas automaticamente pelo Copilot CLI quando relevantes.
 
----
+### Ativar um Agente como Custom Agent
 
-## Protocolo de Resposta (Obrigatório em Todas as Mensagens)
+Para que um agente tenha contexto próprio (delegação real multi-agent), copie o `.agent.md` para o seu projeto:
 
-Este protocolo é **mandatório** e deve ser seguido literalmente em toda mensagem recebida, sem exceção.
-
-### Fluxo (9 Etapas)
-
-1. **Ler a solicitação** — Interpretar com precisão o que foi pedido.
-2. **Consultar conhecimentos relevantes** — Nesta ordem:
-   - `.github/tasks/todo.md` (backlog atual)
-   - `.github/tasks/history.md` (contexto de entregas anteriores)
-   - `copilot-instructions.md` (regras vigentes)
-   - `lessons.md` (lições acumuladas — ler índice primeiro, ir à categoria relevante)
-   - Skill `skill-creator` se a tarefa envolver criar ou modificar skills
-3. **Definir specs e apresentar o plano** — Detalhar escopo, nome da skill, propósito, estrutura do `SKILL.md` e critérios de aceite. O plano **nunca** existe em memória de sessão — após aprovação, é escrito imediatamente no `todo.md`. Nenhum arquivo `plan.md` deve ser criado.
-4. **Aguardar aprovação explícita** — Nenhuma ação ocorre sem confirmação. Se recusado, replanejar.
-5. **Registrar no `todo.md`** — Inserir a task aprovada usando o modelo padrão.
-6. **Escrever a skill** — Com o plano aprovado e registrado, implementar o `SKILL.md` seguindo as regras de qualidade abaixo.
-7. **Mover concluídos para `history.md`** — Antes de qualquer nova task, mover todos os itens `[x]` do `todo.md` para `history.md`. Nunca acumular itens concluídos no `todo.md`.
-8. **Atualizar documentação** — Ao finalizar: atualizar `README.md` se necessário e `lessons.md`.
-9. **Relatório final** — Resumo do que foi feito e arquivos criados ou modificados.
-
-> Quando o usuário corrigir um erro, registrar **imediatamente** o aprendizado em `lessons.md`.
-
----
-
-## Regras de Qualidade para Skills
-
-Uma skill só está pronta quando atende **todos** os critérios abaixo:
-
-- `name` em `kebab-case`, sem prefixos genéricos como `skill-` ou `my-`.
-- `description` responde à pergunta: *"quando devo carregar esta skill?"* — sem ambiguidade.
-- O corpo do `SKILL.md` é **instrucional e acionável** — diz ao agente o que fazer, não o que é.
-- Sem informações duplicadas com outras skills do repositório.
-- Skills `.curated/` passaram por pelo menos um uso real em produção antes de mover.
-- Skills `.experimental/` têm uma nota no topo indicando seu status.
-
----
-
-## Git — Fluxo de Trabalho
-
-Seguir as convenções padrão de Git e GitHub para nomenclatura de branches, commits e PRs.
-
-- **Branches:** prefixo convencional (`feat/`, `fix/`, `refactor/`, `chore/`).
-- **Commits:** Conventional Commits obrigatório (`feat:`, `fix:`, `docs:`, `chore:`).
-- **Push:** empurrar quando o trabalho da branch estiver coeso, sem push por sub-etapa.
-- **PR:** abrir somente quando a entrega estiver concluída. Nunca abrir PR com trabalho em andamento.
-
----
-
-## Task Management
-
-### `tasks/todo.md` — Backlog oficial
-
-- Fonte de verdade.
-- Sempre ler o estado atual antes de qualquer alteração.
-- Nunca sobrescrever conteúdo existente sem leitura prévia.
-- Itens `[x]` devem ser movidos para `history.md` antes de qualquer nova adição.
-
-### `tasks/history.md` — Registro permanente
-
-- Destino de todos os itens concluídos removidos do `todo.md`.
-- Nunca apagar entradas existentes — apenas acrescentar ao final.
-
-### `lessons.md` — Conhecimento acumulado
-
-- Registrar padrões descobertos e erros corrigidos imediatamente após ocorrência.
-- Manter um **índice no topo** com número de linha por categoria.
-- Ao consultar, ler o índice primeiro e ir direto à categoria relevante.
-
-**Estrutura:**
-
-```markdown
-# Lessons — Índice
-
-- [SKILL-QUALITY] linha X
-- [ESTRUTURA] linha X
-- [GIT] linha X
-
----
-
-## [CATEGORIA]
-
-- [YYYY-MM-DD]: Descrição do padrão ou erro e como evitar.
+```sh
+cp skills/.experimental/agents/pr-reviewer/pr-reviewer.agent.md .github/agents/
 ```
 
-### Tipos de Task
+### Configuração Global Pessoal
 
-| Prefixo | Significado |
-|---------|-------------|
-| `[SKILL]` | Criar ou refatorar uma skill |
-| `[FIX]` | Corrigir skill com comportamento incorreto |
-| `[MOVE]` | Promover skill de `.experimental/` para `.curated/` |
-| `[DOCS]` | Atualizar `README.md` ou documentação |
-| `[CHORE]` | Manutenção do repositório |
+Para ter o time disponível em todos os seus projetos:
 
-### Modelo — `todo.md`
-
-```markdown
-# Tarefa: [PREFIXO] Nome da Task
-
-## Specs
-- Skill: [nome-da-skill]
-- Destino: [.curated | .experimental | .system]
-- Propósito: [o que a skill ensina o agente a fazer]
-- Critérios de aceite: [como saber que está pronta]
-
-## Plano
-- [ ] Etapa 1: Redigir `SKILL.md` com frontmatter e conteúdo
-- [ ] Etapa 2: Validar critérios de qualidade
-- [ ] Etapa 3: Atualizar `README.md` se necessário
-
-## Post-Mortem
-- [Notas sobre ajustes ou débitos]
+```sh
+cp skills/.experimental/agents/*/SKILL.md ~/.copilot/skills/
+cp skills/.experimental/agents/*/*.agent.md ~/.copilot/agents/
 ```
 
 ---
 
-## Regras — Nunca Faça
+## Criar um Novo Agente
 
-- **Nunca** crie uma skill sem o frontmatter YAML completo (`name` + `description`).
-- **Nunca** mova uma skill para `.curated/` sem uso real validado.
-- **Nunca** crie `plan.md` — o plano aprovado vai direto para o `todo.md`.
-- **Nunca** abra PR com trabalho em andamento.
-- **Nunca** acumule itens `[x]` no `todo.md`.
+Use a skill `creating-agents` (disponível após install) ou siga o template em `skills/.system/template/SKILL.md`.
 
 ---
 
-**Última atualização:** Abril 2026 | **Versão:** 1.0.0 | **Repositório:** ATNexusLab/skills
+**Repositório:** ATNexusLab/skills | **Idioma:** pt-BR | **Status:** Experimental
