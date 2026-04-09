@@ -18,14 +18,13 @@ description: Use quando precisar entender a arquitetura atual de um projeto ante
 
 ### 1. Localizar documentação de contexto existente
 
-Procurar nesta ordem:
-```
-docs/context/architecture.md
-docs/context/stack.md
-docs/context/conventions.md
-docs/context/decisions/          ← ADRs e decisões anteriores
-README.md
-```
+Buscar documentação arquitetural no projeto. Locais comuns:
+- Diretório `docs/` e subdiretórios (architecture, decisions, adr, context)
+- `README.md` na raiz do projeto
+- Arquivos de decisão (ADRs) — podem estar em `docs/decisions/`, `docs/adr/`, `architecture/decisions/` ou similar
+- Arquivos de convenções ou padrões do projeto
+
+> **Dica:** usar busca por nomes de arquivo (`architecture`, `adr`, `decisions`, `stack`, `conventions`) para descobrir a estrutura de documentação do projeto.
 
 Se não existir nada: registrar que o projeto **não tem contexto documentado** e recomendar criar.
 
@@ -78,10 +77,10 @@ Produzir um resumo estruturado com:
 
 ## Quando Não Existe Documentação
 
-Se o projeto não tem `docs/context/`, registrar claramente:
+Se o projeto não tem documentação arquitetural, registrar claramente:
 
 > "Projeto sem documentação arquitetural. Análise baseada em inferência de código.
-> Recomendo criar `docs/context/architecture.md` com o resultado desta leitura."
+> Recomendo criar um documento de arquitetura com o resultado desta leitura."
 
 ## Referências
 

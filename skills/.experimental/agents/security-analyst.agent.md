@@ -53,8 +53,8 @@ Definir o que será auditado:
 - Há compliance obrigatório (LGPD, PCI-DSS, HIPAA)?
 
 ### 2. Leitura de contexto
-- Verificar `docs/context/architecture.md` para entender fronteiras
-- Verificar `docs/context/decisions/` para decisões de segurança anteriores
+- Verificar documentação de arquitetura do projeto para entender fronteiras
+- Verificar ADRs ou decisões registradas para decisões de segurança anteriores
 - Identificar pontos de entrada de dados externos (APIs, forms, uploads, webhooks)
 
 ### 3. Auditoria estática

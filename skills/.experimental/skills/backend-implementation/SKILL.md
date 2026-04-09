@@ -19,9 +19,9 @@ description: Use quando precisar implementar APIs, serviços, jobs, integraçõe
 ### 1. Ler a spec e o ADR relevante
 
 Antes de escrever qualquer código:
-- `docs/context/architecture.md` — padrões arquiteturais em uso
-- `docs/context/decisions/` — decisões que afetam esta implementação
-- Spec da feature em `docs/` ou `tasks/`
+- Documentação de arquitetura do projeto — padrões arquiteturais em uso
+- ADRs ou decisões registradas — decisões que afetam esta implementação
+- Spec da feature (buscar em docs, issues ou tasks do projeto)
 
 Se não houver spec: **parar e chamar `specs-collector`**.
 

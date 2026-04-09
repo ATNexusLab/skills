@@ -20,3 +20,8 @@
   - Atualizou roster do principal (5→14 agentes), README, copilot-instructions
   - Review de produção: corrigiu paths `.github/tasks/`, frontmatter de tools, contagens no README
   - Validação final: 15 agentes ✅, 10 skills ✅
+- [x] [FIX-003] Remover paths hardcoded de skills/agents — tornar genéricos — 2026-04-09
+  - 7 arquivos corrigidos: architecture-reading, backend-implementation, spec-writing (skills) + backend, architect, security-analyst, specs-collector (agents)
+  - Substituiu 15+ referências a `docs/context/` por instruções de discovery genéricas
+  - Validação: `scripts/validate.sh` — 15 agents ✅, 10 skills ✅
+  - Registrou lição em lessons.md sobre genericidade

@@ -50,7 +50,7 @@ Quando bloqueado:
 
 ### 1. Ler a spec
 Identificar endpoints, contratos, regras de negócio e casos de erro.
-Verificar se existe ADR ou Tech Spec relacionado em `docs/context/decisions/`.
+Verificar se existe ADR ou Tech Spec relacionado na documentação de decisões do projeto.
 
 ### 2. Mapear contratos
 Para cada endpoint/serviço, definir:

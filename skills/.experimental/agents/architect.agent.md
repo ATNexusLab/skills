@@ -64,7 +64,7 @@ Quando bloqueado:
 ### 1. Leitura do contexto atual
 Usar a skill `architecture-reading` para:
 - Mapear stack, fronteiras, padrões e decisões existentes
-- Identificar ADRs anteriores relevantes em `docs/context/decisions/`
+- Identificar ADRs anteriores relevantes na documentação de decisões do projeto
 
 ### 2. Discovery
 Fazer as perguntas acima de forma sistemática.
@@ -86,7 +86,7 @@ Obrigatório: documentar as alternativas rejeitadas e por quê.
 Informar ao `principal`:
 - Qual arquivo foi criado / atualizado
 - Quais agentes precisam ser informados
-- Se `docs/context/` precisa ser atualizado
+- Se a documentação de arquitetura do projeto precisa ser atualizada
 
 ## Nunca Faça
 

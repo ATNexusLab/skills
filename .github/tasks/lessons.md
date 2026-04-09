@@ -17,3 +17,5 @@ Registro de lições aprendidas durante o desenvolvimento e manutenção deste r
 [2026-04-09] [REVIEW] Ao criar agentes que mostram comandos executáveis no workflow (EXPLAIN, mongosh, head, etc.), sempre incluir "execute" no array de tools do frontmatter. Ferramenta declarada no frontmatter deve cobrir tudo que o fluxo de trabalho descreve. Review de produção encontrou 3 agentes (sql-dba, nosql-dba, instructions-expert) com mismatch tools/workflow.
 
 [2026-04-09] [PATHS] Arquivos operacionais do repo (todo.md, history.md, lessons.md) vivem em `.github/tasks/`, não em `tasks/`. Agentes devem sempre referenciar o path completo `.github/tasks/` para evitar ambiguidade. Review encontrou 8+ ocorrências do path incorreto em 3 agentes originais.
+
+[2026-04-09] [GENERICIDADE] Skills e agentes NUNCA devem referenciar paths hardcoded de um projeto específico (ex: `docs/context/architecture.md`). O repo é genérico — skills/agents devem usar instruções de discovery ("buscar documentação do projeto") em vez de assumir estrutura de diretórios. Encontradas 15+ ocorrências em 7 arquivos.

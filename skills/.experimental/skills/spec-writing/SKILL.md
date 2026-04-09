@@ -32,12 +32,11 @@ Com base no critério acima, escolher ADR, Tech Spec ou Architecture Notes.
 
 ### 2. Determinar onde salvar
 
-```
-docs/context/decisions/   ← ADRs (numerados: 0001-nome-da-decisao.md)
-docs/context/             ← Tech Specs e Architecture Notes
-```
+Identificar onde o projeto organiza documentação técnica. Convenções comuns:
+- ADRs: `docs/decisions/`, `docs/adr/`, `architecture/decisions/` (numerados: `0001-nome-da-decisao.md`)
+- Tech Specs e Architecture Notes: `docs/`, `docs/architecture/`, ou diretório equivalente
 
-Se a pasta não existir, criar com um `.gitkeep` e documentar a estrutura.
+Se não existir estrutura de documentação, criar e documentar a convenção adotada.
 
 ### 3. Redigir o documento
 
@@ -57,7 +56,7 @@ Informar ao agente orquestrador:
 - Qual arquivo foi criado/atualizado
 - O que mudou
 - Quais outros agentes precisam ser informados
-- Se outros documentos em `docs/context/` precisam ser atualizados
+- Se outros documentos de arquitetura do projeto precisam ser atualizados
 
 ## Referências
 

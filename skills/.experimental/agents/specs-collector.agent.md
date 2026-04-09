@@ -71,7 +71,7 @@ Quando bloqueado:
 
 ### 1. Leitura do contexto existente
 Verificar se há specs anteriores, ADRs ou features relacionadas.
-Buscar em: `docs/context/`, PRs anteriores, issues, `.github/tasks/history.md`.
+Buscar em: documentação do projeto, PRs anteriores, issues, histórico de tasks.
 
 ### 2. Discovery
 Fazer as perguntas acima. Não avançar sem respostas suficientes.
