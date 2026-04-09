@@ -26,7 +26,8 @@
 | `name` | ✅ | kebab-case, deve corresponder ao nome da skill |
 | `description` | ✅ | Papel + quando usar |
 | `tools` | ✅ | Lista de ferramentas permitidas |
-| `infer` | Recomendado | `true` para auto-inferência |
+| `user-invocable` | Recomendado | `true` para aparecer no dropdown de chat |
+| `disable-model-invocation` | Recomendado | `false` para permitir uso como subagente |
 
 ## Tamanhos Ideais
 

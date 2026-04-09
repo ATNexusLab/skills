@@ -55,7 +55,7 @@ Ex: "Sou o revisor de segurança. Não aprovo nenhum PR sem verificar os 10 pont
 Quando bloqueado ou em dúvida:
 1. **Pare imediatamente** — não tome decisões arbitrárias.
 2. Declare: "Bloqueado em [X]. Contexto: [Y]. Opções consideradas: [Z]."
-3. Aguarde instrução do orquestrador ou do usuário.
+3. Aguarde instrução do `principal` ou do usuário.
 
 ## Fluxo de Trabalho
 
@@ -114,6 +114,7 @@ name: nome-do-agente
 description: Especialista em [área]. Use quando [gatilho preciso].
 tools: ["read", "search", "edit", "execute"]
 user-invocable: true
+disable-model-invocation: false
 ---
 
 # [Nome do Agente]

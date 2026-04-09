@@ -288,16 +288,3 @@ Authorization: Bearer {token}
 }
 ```
 
-### Error response padronizado
-
-```json
-{
-  "error": {
-    "code": "VALIDATION_ERROR",
-    "message": "Dados de entrada inválidos",
-    "details": [
-      { "field": "itens[0].quantidade", "message": "Deve ser maior que 0" }
-    ]
-  }
-}
-```

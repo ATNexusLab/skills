@@ -8,6 +8,13 @@ license: MIT
 
 > ⚠️ EXPERIMENTAL — Ainda não validado em produção.
 
+## Quando Usar
+
+- Criar ou atualizar o arquivo `.github/copilot-instructions.md` do repositório
+- Criar ou atualizar uma `SKILL.md` de conhecimento reutilizável
+- Criar ou atualizar um `.agent.md` de persona especializada
+- Configurar instruções por caminho de arquivo (`.instructions.md`)
+
 ## Tipos de Instrução Copilot CLI
 
 | Tipo | Arquivo | Escopo |
@@ -43,16 +50,17 @@ Arquivo de instruções globais do repositório. Deve definir:
 
 ## Formato: SKILL.md
 
-Conhecimento procedural reutilizável. Frontmatter obrigatório:
+Conhecimento procedural reutilizável. Frontmatter mínimo obrigatório:
 
 ```yaml
 ---
 name: skill-name
 description: Quando usar esta skill em uma frase precisa.
-type: skill
-targets: [copilot-cli]
+license: MIT
 ---
 ```
+
+Campos opcionais: `type: skill`, `targets: [copilot-cli]`.
 
 Corpo do SKILL.md deve conter:
 - **Quando Usar** — gatilhos precisos
@@ -133,7 +141,7 @@ Campos mínimos obrigatórios: `name`, `description`.
 
 ### 3. Estruturar o conteúdo
 
-Para **Skills**: seguir as seções obrigatórias de `docs/conventions.md`:
+Para **Skills**: seguir as seções obrigatórias de `## Formato: SKILL.md`:
 1. Quando Usar
 2. Passos/Procedimento
 3. Exemplos ou Templates
@@ -167,8 +175,6 @@ skills/.experimental/skills/nome/SKILL.md
 ---
 name: minha-skill
 description: Use quando precisar [contexto de uso]. Fornece [o que entrega].
-type: skill
-targets: [copilot-cli]
 license: MIT
 ---
 

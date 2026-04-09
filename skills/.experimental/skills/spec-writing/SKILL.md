@@ -53,7 +53,7 @@ Sem isso, a decisão não tem contexto histórico e tende a ser revertida por er
 
 ### 5. Comunicar o output
 
-Informar ao agente orquestrador:
+Reportar ao `principal`:
 - Qual arquivo foi criado/atualizado
 - O que mudou
 - Quais outros agentes precisam ser informados

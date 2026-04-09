@@ -135,7 +135,7 @@ cargo audit
 | 🟡 **MÉDIO** | CORS permissivo, headers faltando, logs insuficientes | Priorizar no backlog |
 | 🟢 **BAIXO** | Hardening, boas práticas não seguidas | Incluir como recomendação |
 
-## Exemplos
+## Template de Relatório
 
 ```markdown
 ## Relatório de Segurança

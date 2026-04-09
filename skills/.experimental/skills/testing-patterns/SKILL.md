@@ -179,7 +179,7 @@ npm test -- --coverage / pytest --cov
 
 ### 5. Revisar a cobertura
 
-- Verificar `## Checklist de Cobertura` abaixo
+- Verificar `## Checklist de Cobertura` acima
 - Identificar casos de borda não cobertos
 - Adicionar testes de regressão para bugs corrigidos
 

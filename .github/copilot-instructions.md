@@ -50,25 +50,28 @@ Quando a tarefa exigir especialidade, delegar ao agente correspondente:
 | `performance-analyst` | Profiling, benchmarks, otimizações |
 | `documentation-writer` | READMEs, guias, API docs, changelogs |
 | `instructions-expert` | Criar/atualizar instruções Copilot CLI |
+| `project-setup` | Setup inicial de qualquer projeto novo |
 
 ---
 
 ## Protocolo de Escalonamento
 
-1. Se bloqueado: declare explicitamente o que está bloqueando e o que precisa para continuar.
-2. Para decisões de arquitetura: chamar `architect` antes de implementar.
-3. Para findings de segurança críticos: parar tudo e reportar imediatamente.
-4. Para ambiguidade de produto/UX: consultar o usuário diretamente.
+Quando bloqueado, qualquer agente deve:
+1. **Parar** — não tomar decisões arbitrárias.
+2. Declarar: "Bloqueado em [X]. Contexto: [Y]. Necessito de [agente Z]."
+3. **Reportar ao `principal`** a necessidade e aguardar que ele coordene o próximo passo.
+
+> Findings de segurança críticos: reportar ao `principal` imediatamente com detalhes do finding.
 
 ---
 
 ## Protocolo de Reunião (Multi-Agent)
 
 Para tarefas complexas que requerem múltiplas especialidades:
-1. Orquestrador recebe o problema e cria plano no `todo.md`.
+1. `principal` recebe o problema e cria plano no `todo.md`.
 2. Delega sequencialmente aos agentes relevantes via subagents.
 3. Cada agente entrega seu resultado antes do próximo iniciar.
-4. Orquestrador sintetiza e reporta ao usuário.
+4. `principal` sintetiza e reporta ao usuário.
 
 ---
 
@@ -78,8 +81,8 @@ Para tarefas complexas que requerem múltiplas especialidades:
 - **Nunca** mova para `.curated/` sem uso real validado em produção.
 - **Nunca** acumule itens `[x]` no `todo.md` — mover para `history.md` antes de nova task.
 - **Nunca** abra PR com trabalho em andamento.
-- **Nunca** tome decisões de arquitetura sem consultar `architect`.
-- **Nunca** implemente sem spec — usar `specs-collector` primeiro.
+- **Nunca** tome decisões de arquitetura sem reportar ao `principal` — ele acionará o `architect`.
+- **Nunca** implemente sem spec — reportar ao `principal` para acionar `specs-collector` primeiro.
 
 ---
 

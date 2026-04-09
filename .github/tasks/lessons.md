@@ -19,5 +19,10 @@ Registro de lições aprendidas durante o desenvolvimento e manutenção deste r
 [2026-04-09] [PATHS] Arquivos operacionais do repo (todo.md, history.md, lessons.md) vivem em `.github/tasks/`, não em `tasks/`. Agentes devem sempre referenciar o path completo `.github/tasks/` para evitar ambiguidade. Review encontrou 8+ ocorrências do path incorreto em 3 agentes originais.
 
 [2026-04-09] [GENERICIDADE] Skills e agentes NUNCA devem referenciar paths hardcoded de um projeto específico (ex: `docs/context/architecture.md`). O repo é genérico — skills/agents devem usar instruções de discovery ("buscar documentação do projeto") em vez de assumir estrutura de diretórios. Encontradas 15+ ocorrências em 7 arquivos.
+
+[2025-07-11] [FRONTMATTER] O campo `infer` está DEPRECATED no spec oficial do VS Code/.agent.md. Substituído por dois campos: `user-invocable: true` (visibilidade no dropdown de chat) + `disable-model-invocation: false` (permite invocação como subagente pelo principal). SEMPRE incluir ambos em todos os .agent.md.
 
-[2026-04-09] [COMPLETUDE] Todo agente DEVE ter uma skill par com workflow detalhado. Agent = persona leve (50-150 linhas), skill = procedimento rico (100-300 linhas). Três agentes originais (test-driven-developer, security-analyst, pr-reviewer) foram criados sem skill par — corrigido na FEAT-001.
+[2025-07-11] [FRONTMATTER] O `principal.agent.md` ficou com frontmatter quebrado (faltava `---` de fechamento após `user-invocable: true`). Sem o `---`, todo o body era interpretado como YAML. Verificar fechamento de frontmatter ao criar/editar qualquer .agent.md.
+
+[2025-07-11] [ESTRUTURA] Seção `## Metodologia` vazia antes de sub-seções de conteúdo é anti-padrão. Se a metodologia não tem texto próprio, usar o nome da primeira sub-seção diretamente (ex: `## Princípios`, `## Checklist`). Encontrado em todos os 18 agentes — removido na varredura de julho/2025.
+
