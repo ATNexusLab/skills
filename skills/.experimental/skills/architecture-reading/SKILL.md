@@ -1,6 +1,9 @@
 ---
 name: architecture-reading
 description: Use quando precisar entender a arquitetura atual de um projeto antes de tomar decisões ou iniciar implementação. Mapeia stack, fronteiras, padrões e decisões existentes.
+type: skill
+targets: [copilot-cli]
+license: MIT
 ---
 
 # Architecture Reading
@@ -86,3 +89,38 @@ Se o projeto não tem documentação arquitetural, registrar claramente:
 
 - Templates de documentação arquitetural: `references/`
 - Exemplos de relatórios de leitura: `examples/`
+
+## Checklist de validação
+
+- [ ] Stack tecnológica completa mapeada (linguagem, frameworks, banco, infra)
+- [ ] Fronteiras do sistema identificadas (o que é interno vs externo)
+- [ ] Padrões de comunicação mapeados (REST, gRPC, filas, eventos)
+- [ ] Decisões arquiteturais existentes localizadas (ADRs, Tech Specs)
+- [ ] Convenções do projeto documentadas (nomenclatura, estrutura de pastas)
+- [ ] Pontos de atenção / dívida técnica identificados
+- [ ] Resumo entregue ao time antes de iniciar qualquer implementação
+
+## Exemplos
+
+### Output de leitura arquitetural
+
+```markdown
+## Leitura Arquitetural — Projeto X
+
+**Stack:** Node.js 20 + TypeScript, Express, PostgreSQL 15, Redis, Docker  
+**Padrão:** Layered Architecture (handler → service → repository)  
+**Testes:** Jest + Supertest (integração), 73% de cobertura atual
+
+### Fronteiras
+- **Externas:** Stripe (pagamentos), SendGrid (email), S3 (arquivos)
+- **Internas:** API REST → Worker queue (BullMQ) → Email service
+
+### Convenções Encontradas
+- Arquivos em `kebab-case`, classes em `PascalCase`
+- Erros tipados: `AppError extends Error` com `code` e `status`
+- Migrations em `db/migrations/` — rodar com `npm run db:migrate`
+
+### Pontos de Atenção
+- Sem rate limiting nos endpoints públicos (risco de abuse)
+- `UserRepository` com 3 queries N+1 identificadas nas linhas 45, 67, 89
+```

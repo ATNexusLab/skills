@@ -1,6 +1,9 @@
 ---
 name: spec-writing
 description: Use quando precisar documentar uma decisão arquitetural, especificar um componente novo ou registrar análise técnica. Produz ADR, Tech Spec ou Architecture Notes baseado no impacto.
+type: skill
+targets: [copilot-cli]
+license: MIT
 ---
 
 # Spec Writing
@@ -65,3 +68,50 @@ Informar ao agente orquestrador:
 - `references/architecture-notes-template.md` — template de Architecture Notes
 - `examples/` — exemplos preenchidos de cada formato
 - `patterns/common-patterns.md` — catálogo de padrões arquiteturais para referência
+
+## Checklist de validação
+
+- [ ] Tipo correto escolhido: ADR para decisão arquitetural, Tech Spec para componente novo, Architecture Notes para análise
+- [ ] Problema declarado com clareza (o que, por que agora)
+- [ ] Alternativas consideradas (mínimo 2-3 opções avaliadas)
+- [ ] Decisão justificada com tradeoffs explícitos
+- [ ] Critérios de aceite escritos e verificáveis
+- [ ] Dependências e riscos mapeados
+- [ ] Stakeholders relevantes revisaram antes de publicar
+- [ ] Documento armazenado no local correto do repositório
+
+## Exemplos
+
+### ADR — Decisão de autenticação
+
+```markdown
+# ADR-001: Autenticação via JWT com refresh token
+
+**Status:** Aceito  
+**Data:** 2024-01-15  
+**Decisores:** @theo, @arquiteto
+
+## Contexto
+
+A aplicação precisa autenticar usuários em múltiplos clients (web, mobile, CLI).
+Sessões server-side criariam acoplamento e dificultariam o scale horizontal.
+
+## Decisão
+
+Usar JWT de curta duração (15min) + refresh token de longa duração (30 dias) 
+armazenado em cookie HttpOnly.
+
+## Alternativas Consideradas
+
+| Alternativa | Prós | Contras |
+|-------------|------|---------|
+| Sessão server-side | Simples de implementar | Dificulta scale horizontal |
+| OAuth2 externo | Não gerencia credenciais | Dependência de terceiros |
+| **JWT + refresh** | Stateless, multi-client | Maior complexidade de implementação |
+
+## Consequências
+
+- ✅ Scale horizontal sem sticky sessions
+- ✅ Funciona em web, mobile e CLI
+- ⚠️ Revogação de tokens requer lista de bloqueio (Redis)
+```

@@ -1,6 +1,9 @@
 ---
 name: refactoring
 description: Use quando precisar melhorar código existente sem alterar comportamento. Fornece catálogo de code smells, padrões de refatoração, ordem segura e validação com testes.
+type: skill
+targets: [copilot-cli]
+license: MIT
 ---
 
 # Refactoring
@@ -167,3 +170,82 @@ if (retryCount > MAX_RETRIES) { ... }
 - [ ] Build e lint passando
 - [ ] Código mais legível ou mais simples que antes
 - [ ] Commits pequenos e descritivos
+
+## Passos
+
+### 1. Garantir cobertura de testes antes de começar
+
+**Nunca refatorar sem testes.** Se não houver testes:
+1. Escrever testes caracterizando o comportamento atual (Characterization Tests)
+2. Validar que os testes passam com o código atual
+3. Só então iniciar a refatoração
+
+### 2. Identificar code smells
+
+Usar o `## Code Smells — Catálogo` abaixo para mapear o que precisa ser melhorado.
+Priorizar por: impacto na manutenibilidade × risco de quebra.
+
+### 3. Aplicar refatorações atômicas
+
+Seguir a `## Ordem Segura de Refatoração`:
+- Uma refatoração por vez
+- Rodar os testes após cada mudança
+- Commit atômico por refatoração (facilita reverter)
+
+### 4. Usar padrões do catálogo
+
+Consultar `## Padrões de Refatoração` para o padrão correto:
+- Extract Method/Function para código duplicado
+- Rename para nomes que não revelam intenção
+- Extract Variable para expressões complexas
+
+### 5. Validar o resultado
+
+- Todos os testes passando
+- Cobertura mantida ou melhorada
+- Completar o `## Checklist Pós-Refatoração` antes de abrir PR
+
+## Exemplos
+
+### Extract Method
+
+```python
+# ❌ Antes: lógica acoplada e duplicada
+def processar_pedido(pedido):
+    total = 0
+    for item in pedido.itens:
+        preco = item.preco * item.quantidade
+        if item.quantidade > 10:
+            preco *= 0.9  # desconto 10%
+        total += preco
+    pedido.total = total
+    pedido.status = "processado"
+    db.save(pedido)
+
+# ✅ Depois: responsabilidade única, testável
+def calcular_total(itens):
+    return sum(calcular_preco_item(item) for item in itens)
+
+def calcular_preco_item(item):
+    preco = item.preco * item.quantidade
+    return preco * 0.9 if item.quantidade > 10 else preco
+
+def processar_pedido(pedido):
+    pedido.total = calcular_total(pedido.itens)
+    pedido.status = "processado"
+    db.save(pedido)
+```
+
+### Rename Variable
+
+```typescript
+// ❌ Antes: nomes sem significado
+const d = new Date()
+const u = await db.findOne({ id: req.params.id })
+const r = u.role === 'admin'
+
+// ✅ Depois: intenção clara
+const agora = new Date()
+const usuario = await db.findOne({ id: req.params.id })
+const ehAdmin = usuario.role === 'admin'
+```

@@ -1,6 +1,9 @@
 ---
 name: code-review
 description: Use quando precisar revisar código de um PR, branch ou changeset. Fornece checklist estruturado, classificação de severidade e padrões de feedback construtivo.
+type: skill
+targets: [copilot-cli]
+license: MIT
 ---
 
 # Code Review
@@ -113,3 +116,51 @@ Percorrer **todo** o diff antes de comentar:
 - ❌ **Review seletivo** — só olhar o que entende, ignorar o resto
 - ❌ **Scope creep** — pedir mudanças fora do escopo do PR
 - ❌ **Delay indefinido** — segurar review sem feedback claro
+
+## Checklist de validação
+
+- [ ] Diff lido completamente antes de comentar
+- [ ] Contexto da mudança compreendido (issue, spec ou ADR relacionado)
+- [ ] Checklist de revisão aplicado (bloqueadores → issues importantes → melhorias)
+- [ ] Todos os comentários 🔴 Bloqueadores resolvidos antes de aprovar
+- [ ] Testes cobrem os novos comportamentos e casos de borda críticos
+- [ ] Nenhum secret ou dado sensível exposto
+- [ ] Performance: sem N+1 queries ou re-renders desnecessários introduzidos
+- [ ] Feedback construtivo: cada comentário com justificativa e sugestão
+
+## Exemplos
+
+### Comentário de review bem estruturado
+
+```markdown
+🔴 **[Bloqueador] SQL Injection em potencial**
+
+`arquivo: src/users/repository.ts:42`
+
+A query está sendo construída por concatenação de string com input do usuário:
+```typescript
+// ❌ Vulnerável
+const query = `SELECT * FROM users WHERE email = '${email}'`
+```
+
+**Recomendação:** usar query parametrizada:
+```typescript
+// ✅ Seguro
+const user = await db.query('SELECT * FROM users WHERE email = $1', [email])
+```
+
+Referência: OWASP A03:2021 Injection
+```
+
+### Review de PR via CLI
+
+```bash
+# Ver diff do PR
+gh pr diff 42
+
+# Aprovar com comentário
+gh pr review 42 --approve --body "LGTM! Implementação sólida. Apenas o comentário de logging inline para considerar."
+
+# Solicitar mudanças
+gh pr review 42 --request-changes --body "Favor resolver o bloqueador de SQL injection antes do merge."
+```

@@ -1,6 +1,9 @@
 ---
 name: security-audit
 description: Use quando precisar auditar código, dependências ou configurações por vulnerabilidades. Fornece checklist OWASP, ferramentas por stack, templates de relatório e classificação de severidade.
+type: skill
+targets: [copilot-cli]
+license: MIT
 ---
 
 # Security Audit
@@ -134,7 +137,7 @@ cargo audit
 | 🟡 **MÉDIO** | CORS permissivo, headers faltando, logs insuficientes | Priorizar no backlog |
 | 🟢 **BAIXO** | Hardening, boas práticas não seguidas | Incluir como recomendação |
 
-## Template de Relatório
+## Exemplos
 
 ```markdown
 ## Relatório de Segurança
@@ -177,3 +180,48 @@ cargo audit
 - [ ] CORS restritivo
 - [ ] Rate limiting em endpoints de auth
 - [ ] Input validation em todas as fronteiras
+
+## Passos
+
+### 1. Definir escopo da auditoria
+
+- Listar os arquivos, módulos ou PRs a auditar
+- Identificar a stack (linguagem, frameworks, banco de dados)
+- Verificar se há dependências de terceiros a analisar
+
+### 2. Análise de dependências
+
+```bash
+# Node.js
+npm audit
+
+# Python
+pip-audit / safety check
+
+# Ruby
+bundle audit
+
+# Java/Maven
+mvn dependency-check:check
+```
+
+### 3. Auditoria de código — OWASP Top 10
+
+Usar o `## OWASP Top 10 — Checklist Detalhado` abaixo para revisar o código.
+Focar primeiro nas vulnerabilidades de maior impacto (Injection, Auth, Exposure).
+
+### 4. Análise de secrets e configurações
+
+```bash
+# Buscar secrets hardcoded
+grep -r "password\|secret\|api_key\|token" . --include="*.{js,py,go,ts}" | grep -v test
+
+# Verificar .env versionado
+git log --all --full-history -- .env
+```
+
+### 5. Gerar relatório
+
+Usar o `## Template de Relatório` abaixo.
+Classificar cada finding por severidade (🔴 Crítico → 🔵 Info).
+Incluir recomendação concreta e prazo sugerido.

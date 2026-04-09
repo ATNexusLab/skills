@@ -1,6 +1,9 @@
 ---
 name: api-design
 description: Use quando precisar projetar APIs REST, GraphQL ou gRPC. Fornece padrões de design, versionamento, paginação, error responses, rate limiting e documentação.
+type: skill
+targets: [copilot-cli]
+license: MIT
 ---
 
 # API Design
@@ -218,3 +221,85 @@ Documentação mínima por endpoint:
 - [ ] Autenticação e autorização definidos
 - [ ] Versionamento planejado
 - [ ] Documentação (OpenAPI / schema) atualizada
+
+## Passos
+
+### 1. Entender os casos de uso
+
+Antes de definir endpoints:
+- Quais operações o consumidor precisa fazer?
+- Quais dados precisa receber e enviar?
+- Qual a frequência e volume esperado?
+
+### 2. Definir o estilo da API
+
+- **REST**: recursos bem definidos, stateless, HTTP semântico → usar `## REST — Padrões de Design`
+- **GraphQL**: queries flexíveis, múltiplos consumidores, dados relacionados → usar `## GraphQL — Padrões de Design`
+- **gRPC**: performance crítica, comunicação interna entre serviços
+
+### 3. Modelar os recursos (REST)
+
+- Nomear recursos no plural: `/usuarios`, `/pedidos`
+- Usar hierarquia para relacionamentos: `/usuarios/{id}/pedidos`
+- Mapear verbos HTTP aos métodos CRUD:
+  - `GET` → leitura (idempotente)
+  - `POST` → criação
+  - `PUT/PATCH` → atualização
+  - `DELETE` → remoção
+
+### 4. Definir contratos de request/response
+
+- Schemas de entrada com validação explícita
+- Envelope de resposta consistente (success + error format)
+- Campos obrigatórios vs opcionais documentados
+
+### 5. Documentar
+
+Usar `## Documentação` — OpenAPI/Swagger para REST, SDL para GraphQL.
+Incluir exemplos de request/response para cada endpoint.
+
+### 6. Validar com checklist
+
+Completar o `## Checklist de Design` antes de publicar a API.
+
+## Exemplos
+
+### REST — Endpoint padrão
+
+```http
+# Criar pedido
+POST /api/v1/pedidos
+Content-Type: application/json
+Authorization: Bearer {token}
+
+{
+  "usuario_id": "usr_123",
+  "itens": [
+    { "produto_id": "prod_456", "quantidade": 2 }
+  ]
+}
+
+# Response 201 Created
+{
+  "data": {
+    "id": "ped_789",
+    "status": "pendente",
+    "total": 99.90,
+    "criado_em": "2024-01-15T10:30:00Z"
+  }
+}
+```
+
+### Error response padronizado
+
+```json
+{
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Dados de entrada inválidos",
+    "details": [
+      { "field": "itens[0].quantidade", "message": "Deve ser maior que 0" }
+    ]
+  }
+}
+```

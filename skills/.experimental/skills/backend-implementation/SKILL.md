@@ -1,6 +1,9 @@
 ---
 name: backend-implementation
 description: Use quando precisar implementar APIs, serviços, jobs, integrações ou qualquer lógica de servidor. Fornece padrões de implementação, convenções e checklist de validação.
+type: skill
+targets: [copilot-cli]
+license: MIT
 ---
 
 # Backend Implementation
@@ -86,3 +89,62 @@ Ordem recomendada:
 ### Paginação
 - Preferir cursor-based pagination para grandes conjuntos
 - Limite máximo de itens por página com default sensato
+
+## Checklist de validação
+
+- [ ] Contrato da spec seguido (tipos, campos, status codes)
+- [ ] Validação de entrada na camada handler (não no service)
+- [ ] Erros tipados e tratados em todas as camadas
+- [ ] Sem secrets hardcoded — usar variáveis de ambiente
+- [ ] Queries com índices adequados (sem N+1)
+- [ ] Logs estruturados nos pontos críticos (entrada, saída, erros)
+- [ ] Testes de integração cobrindo happy path e error cases principais
+- [ ] Endpoints autenticados onde necessário
+- [ ] Response envelope consistente com o padrão do projeto
+- [ ] Lint e type-check passando
+
+## Exemplos
+
+### Handler com validação e error handling
+
+```typescript
+// handler.ts
+export async function criarPedido(req: Request, res: Response) {
+  // 1. Validar entrada
+  const { error, value } = criarPedidoSchema.validate(req.body)
+  if (error) {
+    return res.status(400).json({
+      error: { code: 'VALIDATION_ERROR', message: error.message }
+    })
+  }
+
+  // 2. Delegar para o service
+  const resultado = await pedidoService.criar(value, req.user.id)
+  
+  if (!resultado.ok) {
+    return res.status(resultado.status).json({
+      error: { code: resultado.code, message: resultado.message }
+    })
+  }
+
+  return res.status(201).json({ data: resultado.data })
+}
+```
+
+### Service com camadas separadas
+
+```typescript
+// service.ts
+export async function criar(dados: CriarPedidoDTO, usuarioId: string) {
+  const usuario = await usuarioRepository.findById(usuarioId)
+  if (!usuario) {
+    return { ok: false, status: 404, code: 'USER_NOT_FOUND', message: 'Usuário não encontrado' }
+  }
+
+  const pedido = await pedidoRepository.create({ ...dados, usuarioId })
+  await emailService.enviarConfirmacao(usuario.email, pedido)
+  
+  logger.info({ pedidoId: pedido.id, usuarioId }, 'Pedido criado com sucesso')
+  return { ok: true, data: pedido }
+}
+```

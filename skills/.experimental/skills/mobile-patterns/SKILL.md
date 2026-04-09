@@ -1,6 +1,9 @@
 ---
 name: mobile-patterns
 description: Use quando precisar implementar features mobile (React Native, Flutter, Swift, Kotlin), configurar builds, resolver problemas de plataforma ou adaptar UI para mobile.
+type: skill
+targets: [copilot-cli]
+license: MIT
 ---
 
 # Mobile Patterns
@@ -66,3 +69,81 @@ flutter build ios --release
 - [ ] Performance em dispositivos de baixo desempenho
 - [ ] Sem dados sensíveis em logs de produção
 - [ ] Build assinado com certificado correto
+
+## Passos
+
+### 1. Identificar a plataforma alvo
+
+- **React Native**: JavaScript/TypeScript, código compartilhado iOS+Android
+- **Flutter**: Dart, alta fidelidade visual multiplataforma
+- **Swift/SwiftUI**: iOS/macOS nativo
+- **Kotlin/Jetpack Compose**: Android nativo
+
+### 2. Mapear os padrões fundamentais necessários
+
+Consultar `## Padrões Fundamentais` para identificar quais aplicam:
+- Navegação (Stack, Tab, Drawer)
+- Gerenciamento de estado
+- Requisições HTTP e cache
+- Armazenamento local
+
+### 3. Implementar com padrões da plataforma
+
+- Seguir as **Human Interface Guidelines** (iOS) ou **Material Design** (Android)
+- Componentes nativos sempre que possível (evitar custom widgets desnecessários)
+- Adaptar layout para diferentes tamanhos de tela (`SafeAreaView`, responsive units)
+
+### 4. Validar em dispositivo real
+
+- Testar em iOS e Android (não só em emulador)
+- Verificar orientação portrait e landscape
+- Testar com conectividade ruim e offline
+
+### 5. Completar o checklist antes de release
+
+Usar `## Checklist Pré-Release` antes de submeter para as stores.
+
+## Exemplos
+
+### React Native — Componente com estados de loading/error
+
+```tsx
+function ListaPedidos() {
+  const { data, isLoading, error } = usePedidos()
+
+  if (isLoading) return <ActivityIndicator size="large" />
+  if (error) return <ErrorState message={error.message} onRetry={refetch} />
+  if (!data?.length) return <EmptyState message="Nenhum pedido encontrado" />
+
+  return (
+    <FlatList
+      data={data}
+      keyExtractor={(item) => item.id}
+      renderItem={({ item }) => <PedidoCard pedido={item} />}
+    />
+  )
+}
+```
+
+### Flutter — Tratamento de estado com riverpod
+
+```dart
+final pedidosProvider = FutureProvider<List<Pedido>>((ref) async {
+  return ref.watch(pedidoRepositoryProvider).listarPedidos();
+});
+
+class PedidosScreen extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final pedidosAsync = ref.watch(pedidosProvider);
+    return pedidosAsync.when(
+      loading: () => const CircularProgressIndicator(),
+      error: (err, _) => Text('Erro: $err'),
+      data: (pedidos) => ListView.builder(
+        itemCount: pedidos.length,
+        itemBuilder: (ctx, i) => PedidoTile(pedido: pedidos[i]),
+      ),
+    );
+  }
+}
+```

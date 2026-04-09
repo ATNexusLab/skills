@@ -1,6 +1,9 @@
 ---
 name: technical-writing
 description: Use quando precisar escrever documentação técnica — READMEs, guias de contribuição, API docs, changelogs, runbooks ou documentação de onboarding.
+type: skill
+targets: [copilot-cli]
+license: MIT
 ---
 
 # Technical Writing
@@ -193,3 +196,44 @@ Seguir [Keep a Changelog](https://keepachangelog.com/):
 - [ ] Headers e estrutura permitem scanning rápido
 - [ ] Links internos e externos funcionando
 - [ ] Data de última atualização visível ou inferable (via git)
+
+## Exemplos
+
+### README.md básico funcional
+
+```markdown
+# Nome do Projeto
+
+Descrição em uma linha — o que faz e para quem.
+
+## Quick Start
+
+```bash
+npm install
+npm run dev
+```
+
+Acesse http://localhost:3000
+
+## Documentação
+
+- [Guia de instalação completo](docs/installation.md)
+- [Referência de API](docs/api.md)
+- [Contribuindo](CONTRIBUTING.md)
+```
+
+### Changelog entry (Keep a Changelog)
+
+```markdown
+## [1.3.0] - 2024-02-01
+
+### Adicionado
+- Autenticação via OAuth2 com Google e GitHub (#123)
+- Endpoint `GET /usuarios/me` para perfil do usuário autenticado
+
+### Corrigido
+- Race condition em uploads concorrentes (#145)
+
+### Alterado
+- `POST /pedidos` agora retorna 201 ao invés de 200 (breaking change)
+```

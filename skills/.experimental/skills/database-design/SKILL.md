@@ -1,6 +1,9 @@
 ---
 name: database-design
 description: Use quando precisar modelar dados, criar schemas, migrations, queries complexas ou otimizar acesso a bancos SQL e NoSQL.
+type: skill
+targets: [copilot-cli]
+license: MIT
 ---
 
 # Database Design
@@ -99,3 +102,96 @@ EXPIRE rate:user:123 60
 - [ ] Migration reversível com down
 - [ ] Sem alteração de dados em migration de schema
 - [ ] Testado com dados de volume realista
+
+## Passos
+
+### 1. Mapear os casos de uso e padrões de acesso
+
+Antes de modelar qualquer schema:
+- Quais queries serão mais frequentes?
+- Qual a relação entre as entidades? (1:1, 1:N, N:M)
+- Quais dados precisam de consistência transacional?
+- Qual o volume esperado por tabela/coleção?
+
+### 2. Escolher o tipo de banco
+
+- **SQL**: dados relacionais com integridade referencial, transações ACID
+- **NoSQL Document**: dados com schema variável, leitura por documento
+- **NoSQL Key-Value**: cache, sessões, dados simples de alta velocidade
+- **NoSQL Time Series**: métricas, logs, eventos temporais
+
+### 3. Modelar o schema
+
+Para **SQL**: usar `## SQL — Padrões e Boas Práticas`
+- Normalizar até 3NF, desnormalizar conscientemente para performance
+- Definir PKs, FKs, constraints, índices
+
+Para **NoSQL**: usar `## NoSQL — Padrões e Boas Práticas`
+- Modelar orientado à query, não à relação
+- Evitar joins — embutir ou referenciar com base no padrão de acesso
+
+### 4. Criar migrations versionadas
+
+```bash
+# Exemplo com ferramentas comuns
+# Prisma
+npx prisma migrate dev --name criar_tabela_usuarios
+
+# Flyway / Liquibase
+V001__criar_tabela_usuarios.sql
+```
+
+### 5. Validar com checklist
+
+Completar o `## Checklist de Revisão de Schema` antes de aplicar em produção.
+
+## Exemplos
+
+### Schema SQL — Tabela de usuários
+
+```sql
+CREATE TABLE usuarios (
+    id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    email       VARCHAR(255) NOT NULL UNIQUE,
+    nome        VARCHAR(255) NOT NULL,
+    criado_em   TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    atualizado_em TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- Índice para busca por email (mais comum)
+CREATE INDEX idx_usuarios_email ON usuarios(email);
+
+-- Trigger para atualizar atualizado_em automaticamente
+CREATE OR REPLACE FUNCTION atualizar_timestamp()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.atualizado_em = NOW();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+### Modelagem NoSQL — Documento de pedido (MongoDB)
+
+```json
+{
+  "_id": "ped_789",
+  "usuario": {
+    "id": "usr_123",
+    "email": "user@example.com",
+    "nome": "João Silva"
+  },
+  "itens": [
+    {
+      "produto_id": "prod_456",
+      "nome": "Produto A",
+      "preco_unitario": 49.95,
+      "quantidade": 2
+    }
+  ],
+  "total": 99.90,
+  "status": "pendente",
+  "criado_em": "2024-01-15T10:30:00Z"
+}
+```
+> ✅ `usuario` e `itens` embutidos porque são sempre lidos juntos com o pedido.

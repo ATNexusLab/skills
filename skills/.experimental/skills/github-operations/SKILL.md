@@ -1,6 +1,9 @@
 ---
 name: github-operations
 description: Use quando precisar executar operações no GitHub via CLI ou API: criar issues, PRs, releases, gerenciar branches, labels, milestones e workflows.
+type: skill
+targets: [copilot-cli]
+license: MIT
 ---
 
 # GitHub Operations
@@ -113,3 +116,79 @@ docs        — documentação
 - [ ] Descrição do PR explica o quê, por quê e como testar
 - [ ] Issue relacionada linkada (`Closes #123`)
 - [ ] Sem commits de debug, console.log ou arquivos temporários
+
+## Passos
+
+### 1. Autenticar no GitHub CLI
+
+```bash
+gh auth login
+gh auth status  # verificar autenticação
+```
+
+### 2. Identificar a operação necessária
+
+Consultar `## Operações Comuns` para o comando exato:
+- Issues: `gh issue create/list/view/close`
+- PRs: `gh pr create/list/review/merge`
+- Releases: `gh release create`
+- Workflows: `gh workflow run/list/view`
+
+### 3. Executar com convenções
+
+Seguir `## Convenções de Nomenclatura` para branches, labels e títulos:
+- Branch: `feat/descricao`, `fix/descricao`, `chore/descricao`
+- Commits: Conventional Commits (`feat:`, `fix:`, `docs:`, etc.)
+- PR title: mesmo formato do commit
+
+### 4. Criar PR com descrição completa
+
+```bash
+gh pr create   --title "feat: adicionar autenticação JWT"   --body "## O que muda
+...
+## Como testar
+..."   --label "enhancement"   --assignee "@me"
+```
+
+### 5. Completar checklist antes do PR
+
+Usar `## Checklist antes de criar PR` para garantir qualidade antes do review.
+
+## Exemplos
+
+### Criar issue com template
+
+```bash
+gh issue create   --title "bug: botão de login não responde no Safari"   --body "## Descrição
+O botão de login não dispara o evento de submit no Safari 17.
+
+## Reprodução
+1. Abrir em Safari
+2. Preencher credenciais
+3. Clicar em Entrar
+
+## Comportamento esperado
+Usuário é autenticado
+
+## Comportamento atual
+Nada acontece"   --label "bug,priority:high"   --assignee "meu-usuario"
+```
+
+### Workflow de PR completo
+
+```bash
+# Criar branch
+git checkout -b feat/autenticacao-jwt
+
+# Trabalhar... commitar...
+git commit -m "feat: implementar autenticação JWT com refresh token"
+
+# Push e criar PR em um comando
+gh pr create --fill --draft
+
+# Quando pronto para review
+gh pr ready
+
+# Após aprovações, fazer merge
+gh pr merge --squash --delete-branch
+```

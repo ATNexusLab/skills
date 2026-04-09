@@ -1,6 +1,9 @@
 ---
 name: devops-patterns
 description: Use quando precisar configurar CI/CD, Docker, infraestrutura como código, estratégias de deploy ou gerenciamento de ambientes. Padrões e boas práticas de DevOps.
+type: skill
+targets: [copilot-cli]
+license: MIT
 ---
 
 # DevOps Patterns
@@ -192,3 +195,94 @@ services:
 - [ ] Backup e disaster recovery planejados
 - [ ] Branch protection rules ativas
 - [ ] Ambientes isolados (dev, staging, prod)
+
+## Passos
+
+### 1. Mapear o contexto de infraestrutura
+
+- Identificar a plataforma alvo (AWS, GCP, Azure, bare metal, k8s)
+- Verificar stage atual: local → staging → produção
+- Listar ferramentas já em uso no projeto (Docker, Terraform, Ansible, etc.)
+
+### 2. Definir a estratégia de CI/CD
+
+Consultar `## CI/CD Pipeline` para o padrão adequado:
+- GitHub Actions, GitLab CI, CircleCI, Jenkins
+- Definir triggers: push, PR, tag, schedule
+- Definir stages: lint → test → build → deploy
+
+### 3. Containerizar a aplicação
+
+Usar padrões de `## Docker`:
+- Dockerfile multi-stage para imagens lean
+- `.dockerignore` sempre presente
+- Variáveis de ambiente via `ENV` ou secrets externos
+
+### 4. Configurar estratégia de deploy
+
+Escolher a estratégia em `## Estratégias de Deploy`:
+- **Blue-Green**: zero downtime, rollback instantâneo
+- **Canary**: rollout gradual, validação em produção
+- **Rolling**: atualização gradual de instâncias
+
+### 5. Gerenciar secrets
+
+Consultar `## Secrets Management` — nunca hardcodar secrets em código.
+Usar: Vault, AWS Secrets Manager, GitHub Secrets, etc.
+
+### 6. Validar com checklist
+
+Completar o `## Checklist de Infraestrutura` antes de cada deploy em produção.
+
+## Exemplos
+
+### GitHub Actions — Pipeline básico
+
+```yaml
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - run: npm test -- --coverage
+
+  build-and-push:
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build e push Docker image
+        run: |
+          docker build -t ${{ secrets.REGISTRY }}/app:${{ github.sha }} .
+          docker push ${{ secrets.REGISTRY }}/app:${{ github.sha }}
+```
+
+### Dockerfile multi-stage (Node.js)
+
+```dockerfile
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+
+FROM node:20-alpine AS runtime
+WORKDIR /app
+COPY --from=builder /app/node_modules ./node_modules
+COPY . .
+EXPOSE 3000
+USER node
+CMD ["node", "dist/index.js"]
+```

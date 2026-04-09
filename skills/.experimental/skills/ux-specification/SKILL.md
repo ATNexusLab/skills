@@ -1,6 +1,9 @@
 ---
 name: ux-specification
 description: Use quando precisar criar especificações de UX, fluxos de usuário, critérios de acessibilidade ou avaliar decisões de interface. Não implementa — especifica.
+type: skill
+targets: [copilot-cli]
+license: MIT
 ---
 
 # UX Specification
@@ -98,3 +101,81 @@ Antes de especificar qualquer interface:
 - Nunca usar placeholder como substituto de label
 - Nunca criar modais que bloqueiam sem forma clara de fechar
 - Nunca mover foco de forma inesperada sem avisar o usuário
+
+## Passos
+
+### 1. Coletar contexto do produto
+
+Antes de especificar qualquer fluxo:
+- Quem é o usuário? (persona, nível de experiência técnica)
+- Qual problema está sendo resolvido?
+- Quais são os constraints de plataforma (mobile, desktop, ambos)?
+
+### 2. Conduzir discovery de UX
+
+Usar `## Perguntas de Discovery UX` para coletar informações estruturadas sobre o fluxo.
+Registrar respostas antes de avançar.
+
+### 3. Mapear o fluxo de usuário
+
+Usar o `## Formato de Especificação de Fluxo` para documentar:
+- Contexto: onde o usuário está antes deste fluxo
+- Gatilho: o que inicia o fluxo
+- Passos principais: sequência de interações
+- Estados alternativos: erro, loading, empty state, confirmação
+- Resultado esperado: onde o usuário termina
+
+### 4. Definir critérios de acessibilidade
+
+Aplicar os critérios de `## Critérios de Acessibilidade (WCAG 2.1 AA)`:
+- Contraste, navegação por teclado, ARIA labels obrigatórios
+
+### 5. Revisar padrões de feedback
+
+Consultar `## Padrões de Feedback Visual` para garantir que loading, error, success e empty state estão especificados.
+
+### 6. Entregar a especificação
+
+- Documento revisado e aprovado pelo produto
+- Handoff para o time de implementação (frontend/mobile)
+- Critérios de aceite claros e testáveis
+
+## Checklist de validação
+
+- [ ] Persona do usuário identificada e documentada
+- [ ] Fluxo de usuário mapeado com todos os estados (happy path, error, loading, empty)
+- [ ] Critérios de acessibilidade WCAG 2.1 AA aplicados
+- [ ] Padrões de feedback visual definidos para cada estado
+- [ ] Casos de borda identificados (conexão lenta, dados vazios, erros de servidor)
+- [ ] Especificação revisada com o time de produto
+- [ ] Critérios de aceite escritos e testáveis
+- [ ] Handoff documentado para implementação
+
+## Exemplos
+
+### Especificação de fluxo — Login
+
+```markdown
+## Fluxo: Login com Email e Senha
+
+**Contexto:** Usuário não autenticado tenta acessar área restrita
+**Gatilho:** Clique em "Entrar" ou redirecionamento automático
+
+### Passos Principais
+1. Usuário vê formulário com campos Email e Senha
+2. Usuário preenche os campos
+3. Usuário clica em "Entrar"
+4. Sistema valida credenciais
+5. Sistema redireciona para dashboard
+
+### Estados Alternativos
+- **Loading:** Botão desabilitado + spinner após submit
+- **Erro de validação:** Mensagem inline nos campos inválidos
+- **Credenciais inválidas:** "Email ou senha incorretos" (sem especificar qual)
+- **Conta bloqueada:** Mensagem específica + link de suporte
+
+### Acessibilidade
+- Labels associados aos inputs (não placeholder como substituto)
+- Foco gerenciado: após erro, foco vai para o primeiro campo com erro
+- Mensagens de erro anunciadas via aria-live
+```

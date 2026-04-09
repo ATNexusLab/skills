@@ -1,6 +1,9 @@
 ---
 name: performance-analysis
 description: Use quando precisar identificar gargalos de performance, fazer profiling, benchmarks ou otimizações em backend, frontend ou banco de dados.
+type: skill
+targets: [copilot-cli]
+license: MIT
 ---
 
 # Performance Analysis
@@ -106,3 +109,85 @@ npx webpack-bundle-analyzer stats.json
 - Bundle JS > 1MB = muito a carregar antes de renderizar
 - Memory leak = uso de memória cresce continuamente
 - CPU spike sem carga = GC ou computação síncrona na thread principal
+
+## Passos
+
+### 1. Definir a hipótese de problema
+
+Antes de perfilar:
+- Qual comportamento está lento? (endpoint, query, render, build)
+- Qual é a métrica atual e qual a meta?
+- Em qual ambiente ocorre? (prod, staging, local com dados reais?)
+
+### 2. Medir antes de otimizar
+
+**Nunca otimizar sem medir primeiro.**
+
+```bash
+# Backend — tempo de resposta de um endpoint
+curl -w "@curl-format.txt" -s http://localhost:3000/api/endpoint
+
+# Banco de dados — EXPLAIN ANALYZE
+EXPLAIN ANALYZE SELECT * FROM usuarios WHERE email = 'user@example.com';
+
+# Frontend — Lighthouse
+npx lighthouse https://meusite.com --output json
+```
+
+### 3. Identificar o gargalo
+
+Usar `## Métricas por Camada` para guiar a análise:
+- Backend: CPU, memória, I/O, queries N+1
+- Frontend: LCP, FID, CLS (Core Web Vitals)
+- Banco: índices ausentes, table scans, lock contention
+
+### 4. Perfilar com ferramenta adequada
+
+Consultar `## Ferramentas por Stack` para escolher a ferramenta correta para a linguagem/plataforma.
+
+### 5. Implementar e validar a otimização
+
+- Implementar **uma** otimização por vez
+- Medir novamente com a mesma metodologia do passo 2
+- Documentar o ganho obtido (ex: "P95 de 2.3s → 340ms após adição de índice")
+
+### 6. Completar o checklist
+
+Usar `## Checklist de Análise` antes de fechar o ciclo de otimização.
+
+## Exemplos
+
+### Análise de query lenta (PostgreSQL)
+
+```sql
+-- Identificar queries lentas
+SELECT query, mean_exec_time, calls, total_exec_time
+FROM pg_stat_statements
+ORDER BY mean_exec_time DESC
+LIMIT 10;
+
+-- Analisar uma query específica
+EXPLAIN (ANALYZE, BUFFERS, FORMAT TEXT)
+SELECT u.*, p.* FROM usuarios u
+JOIN pedidos p ON p.usuario_id = u.id
+WHERE u.email = 'user@example.com';
+
+-- Resultado típico de problema: "Seq Scan" em tabela grande
+-- Solução: CREATE INDEX idx_usuarios_email ON usuarios(email);
+```
+
+### Profiling de endpoint (Node.js)
+
+```javascript
+// Usando clinic.js
+// $ npx clinic doctor -- node server.js
+// $ npx clinic flame -- node server.js
+
+// Ou com console.time para medição pontual
+async function getUsuario(id) {
+  console.time('db-query')
+  const usuario = await db.findById(id)
+  console.timeEnd('db-query')  // output: db-query: 245ms
+  return usuario
+}
+```

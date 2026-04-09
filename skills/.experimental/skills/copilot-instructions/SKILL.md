@@ -1,6 +1,9 @@
 ---
 name: copilot-instructions
 description: Use quando precisar criar ou atualizar instruções do Copilot CLI — copilot-instructions.md, SKILL.md, .agent.md ou arquivos de instrução por caminho.
+type: skill
+targets: [copilot-cli]
+license: MIT
 ---
 
 # Copilot Instructions
@@ -114,3 +117,117 @@ Para qualquer instrução criada:
 - [ ] Instruções executáveis, não só conceituais
 - [ ] Sem repetição de conteúdo já em outra instrução
 - [ ] Tag `⚠️ EXPERIMENTAL` se ainda não validado em produção
+
+## Passos
+
+### 1. Identificar o escopo da instrução
+
+Determinar onde a instrução deve atuar — usar `## Quando Usar Cada Tipo` como guia:
+- Afeta todo repositório → `.github/copilot-instructions.md`
+- Afeta diretório específico → `.instructions.md`
+- Capacidade reutilizável → `SKILL.md`
+- Persona com fluxo → `.agent.md`
+
+### 2. Escrever o frontmatter YAML
+
+Consultar o formato correspondente em `## Formato: SKILL.md` ou `## Formato: .agent.md`.
+Campos mínimos obrigatórios: `name`, `description`.
+
+### 3. Estruturar o conteúdo
+
+Para **Skills**: seguir as seções obrigatórias de `docs/conventions.md`:
+1. Quando Usar
+2. Passos/Procedimento
+3. Exemplos ou Templates
+4. Checklist de validação
+
+Para **Agents**: seguir as seções obrigatórias:
+1. Persona
+2. Metodologia
+3. Protocolo de Escalamento
+4. Fluxo de Trabalho
+5. Nunca Faça
+
+### 4. Validar com checklist
+
+Completar o `## Checklist de Qualidade` abaixo antes de commitar.
+
+### 5. Registrar no repositório
+
+```bash
+# Posicionar o arquivo no local correto
+# Para agents e skills neste repositório:
+skills/.experimental/agents/nome.agent.md
+skills/.experimental/skills/nome/SKILL.md
+```
+
+## Exemplos
+
+### SKILL.md mínimo válido
+
+```markdown
+---
+name: minha-skill
+description: Use quando precisar [contexto de uso]. Fornece [o que entrega].
+type: skill
+targets: [copilot-cli]
+license: MIT
+---
+
+# Minha Skill
+
+## Quando Usar
+
+- Situação A que justifica uso
+- Situação B que justifica uso
+
+## Passos
+
+### 1. Primeiro passo
+Descrição acionável.
+
+### 2. Segundo passo
+Descrição acionável.
+
+## Checklist de validação
+
+- [ ] Critério 1
+- [ ] Critério 2
+```
+
+### .agent.md mínimo válido
+
+```markdown
+---
+name: meu-agente
+description: Papel do agente. Use quando precisar [contexto].
+tools: ["read", "search", "edit", "todo"]
+user-invocable: true
+type: agent
+targets: [copilot-cli]
+license: MIT
+infer: true
+---
+
+# Meu Agente
+
+## Persona
+
+[1-3 linhas descrevendo a persona e princípio central]
+
+## Metodologia
+
+[Seções técnicas específicas do domínio]
+
+## Protocolo de Escalamento
+
+[Quando e como escalar]
+
+## Fluxo de Trabalho
+
+[Passos numerados]
+
+## Nunca Faça
+
+[Proibições explícitas]
+```
