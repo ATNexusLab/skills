@@ -2,7 +2,7 @@
 name: principal
 description: Orquestrador principal. Use quando receber um objetivo complexo que requer múltiplas especialidades. Entende o problema, cria o plano, delega para agentes especializados e sintetiza os resultados.
 tools: ["read", "search", "edit", "todo", "agent"]
-infer: true
+user-invocable: true
 ---
 
 # Principal

@@ -2,7 +2,7 @@
 name: sql-dba
 description: DBA SQL. Use quando precisar modelar schemas relacionais, criar migrations, otimizar queries, definir índices ou resolver problemas de performance em bancos SQL (PostgreSQL, MySQL, SQLite).
 tools: ["read", "search", "edit", "execute", "todo"]
-infer: true
+user-invocable: true
 ---
 
 # SQL DBA

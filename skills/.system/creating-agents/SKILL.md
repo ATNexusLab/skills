@@ -1,8 +1,6 @@
 ---
 name: creating-agents
 description: Use quando precisar criar um novo agente ou skill para este repositório. Guia o processo completo: requisitos, estrutura de pastas, SKILL.md e .agent.md.
-type: agent
-targets: [copilot-cli]
 ---
 
 <required>
@@ -55,8 +53,6 @@ Seguir o template em `skills/.system/template/SKILL.md`. Campos obrigatórios:
 ```yaml
 name: nome-em-kebab-case
 description: Use quando [gatilho preciso]. [Uma frase do que faz.]
-type: agent  # ou skill
-targets: [copilot-cli, gemini-cli, antigravity]
 ```
 
 ### 4. Escrever .agent.md
@@ -64,7 +60,7 @@ targets: [copilot-cli, gemini-cli, antigravity]
 name: nome-do-agente
 description: [Persona]. Use quando [gatilho].
 tools: ["read", "search", "edit"]  # restringir ao mínimo necessário
-infer: true
+user-invocable: true
 ```
 
 ### 5. Revisar

@@ -1,8 +1,6 @@
 ---
 name: copilot-instructions
 description: Use quando precisar criar ou atualizar instruções do Copilot CLI — copilot-instructions.md, SKILL.md, .agent.md ou arquivos de instrução por caminho.
-type: skill
-targets: [copilot-cli]
 ---
 
 # Copilot Instructions

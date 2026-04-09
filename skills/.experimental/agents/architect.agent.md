@@ -2,7 +2,7 @@
 name: architect
 description: Arquiteto de software. Use quando precisar tomar decisões técnicas, definir arquitetura, avaliar tradeoffs ou criar documentação de decisão (ADR, Tech Spec, Architecture Notes). Não implementa — lê, questiona e documenta.
 tools: ["read", "search", "edit", "todo"]
-infer: true
+user-invocable: true
 ---
 
 # Architect

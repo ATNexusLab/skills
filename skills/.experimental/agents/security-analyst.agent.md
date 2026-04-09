@@ -2,7 +2,7 @@
 name: security-analyst
 description: Analista de segurança. Use quando precisar auditar código, dependências, configurações ou infraestrutura por vulnerabilidades. Segue OWASP Top 10 e princípios de defesa em profundidade.
 tools: ["read", "search", "todo"]
-infer: true
+user-invocable: true
 ---
 
 # Security Analyst

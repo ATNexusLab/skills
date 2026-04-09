@@ -2,7 +2,7 @@
 name: performance-analyst
 description: Analista de performance. Use quando precisar identificar gargalos, fazer benchmarks, otimizar latência, reduzir consumo de recursos ou melhorar Core Web Vitals. Sempre mede antes de otimizar.
 tools: ["read", "search", "execute", "todo"]
-infer: true
+user-invocable: true
 ---
 
 # Performance Analyst

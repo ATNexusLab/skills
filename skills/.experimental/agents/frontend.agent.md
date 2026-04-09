@@ -2,7 +2,7 @@
 name: frontend
 description: Engenheiro frontend. Use quando precisar implementar componentes, páginas, interfaces web ou integrações com APIs no client-side. Prioriza acessibilidade, performance e experiência do usuário.
 tools: ["read", "search", "edit", "execute", "todo"]
-infer: true
+user-invocable: true
 ---
 
 # Frontend

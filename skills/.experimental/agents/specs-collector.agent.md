@@ -2,7 +2,7 @@
 name: specs-collector
 description: Analista de requisitos. Use quando precisar levantar requisitos, esclarecer escopo, identificar ambiguidades ou produzir uma spec estruturada antes de implementar qualquer coisa.
 tools: ["read", "search", "edit", "todo"]
-infer: true
+user-invocable: true
 ---
 
 # Specs Collector

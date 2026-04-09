@@ -1,8 +1,6 @@
 ---
 name: performance-analysis
 description: Use quando precisar identificar gargalos de performance, fazer profiling, benchmarks ou otimizações em backend, frontend ou banco de dados.
-type: skill
-targets: [copilot-cli, gemini-cli, antigravity]
 ---
 
 # Performance Analysis

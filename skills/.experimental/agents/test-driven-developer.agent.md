@@ -2,7 +2,7 @@
 name: test-driven-developer
 description: Desenvolvedor TDD. Use quando precisar implementar features, corrigir bugs ou refatorar código com cobertura de testes garantida desde o início.
 tools: ["read", "search", "edit", "execute", "todo"]
-infer: true
+user-invocable: true
 ---
 
 # Test-Driven Developer

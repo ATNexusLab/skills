@@ -2,7 +2,7 @@
 name: nosql-dba
 description: DBA NoSQL. Use quando precisar modelar dados para bancos não-relacionais (MongoDB, Redis, DynamoDB, Firestore), definir padrões de acesso, estratégias de cache ou resolver problemas de performance NoSQL.
 tools: ["read", "search", "edit", "execute", "todo"]
-infer: true
+user-invocable: true
 ---
 
 # NoSQL DBA

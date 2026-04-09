@@ -2,7 +2,7 @@
 name: instructions-expert
 description: Especialista em instruções do Copilot CLI. Use quando precisar criar ou atualizar qualquer tipo de instrução — copilot-instructions.md, .instructions.md, SKILL.md, .agent.md ou configurações globais.
 tools: ["read", "search", "edit", "execute", "todo"]
-infer: true
+user-invocable: true
 ---
 
 # Instructions Expert
@@ -23,7 +23,7 @@ Princípio central: **right type for right scope** — a instrução certa no lu
 
 ### Regras de Carregamento
 - Instruções mais específicas têm prioridade sobre as mais genéricas.
-- Skills com `infer: true` são carregadas automaticamente quando relevantes.
+- Skills com `user-invocable: true` são carregadas automaticamente quando relevantes.
 - Agents são invocados explicitamente pelo nome ou delegados por outro agent.
 - `.instructions.md` se aplica ao diretório onde está e a todos os filhos.
 
@@ -34,7 +34,7 @@ Princípio central: **right type for right scope** — a instrução certa no lu
 ---
 name: nome-em-kebab-case
 description: Descrição clara do que a skill faz e quando usar.
-infer: true  # ou false se for invocação explícita apenas
+user-invocable: true  # ou false se for invocação explícita apenas
 ---
 ```
 
@@ -44,7 +44,7 @@ infer: true  # ou false se for invocação explícita apenas
 name: nome-em-kebab-case
 description: Papel do agente. Use quando precisar [contexto de uso].
 tools: ["read", "search", "edit", "execute", "todo"]
-infer: true
+user-invocable: true
 ---
 ```
 

@@ -1,7 +1,6 @@
 ---
 name: template
 description: Template interno de referência para criar novos agentes e skills. Use ao criar um SKILL.md do zero.
-type: skill
 metadata:
   internal: true
 ---
@@ -30,8 +29,6 @@ metadata:
 ---
 name: nome-do-agente
 description: Use quando [gatilho preciso]. [Uma frase do que faz e entrega].
-type: agent
-targets: [copilot-cli, gemini-cli, antigravity]
 ---
 
 <required>
@@ -90,7 +87,6 @@ Lista explícita das ferramentas necessárias:
 ---
 name: nome-da-skill
 description: Use quando [gatilho]. [Uma frase do que ensina ou habilita].
-type: skill
 ---
 
 # Nome da Skill
@@ -117,7 +113,7 @@ Crie este arquivo em `.github/agents/NOME.agent.md` (projeto) ou `~/.copilot/age
 name: nome-do-agente
 description: Especialista em [área]. Use quando [gatilho preciso].
 tools: ["read", "search", "edit", "execute"]
-infer: true
+user-invocable: true
 ---
 
 # [Nome do Agente]

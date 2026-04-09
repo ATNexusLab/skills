@@ -1,8 +1,6 @@
 ---
 name: database-design
 description: Use quando precisar modelar dados, criar schemas, migrations, queries complexas ou otimizar acesso a bancos SQL e NoSQL.
-type: skill
-targets: [copilot-cli, gemini-cli, antigravity]
 ---
 
 # Database Design

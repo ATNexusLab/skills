@@ -2,7 +2,7 @@
 name: pr-reviewer
 description: Revisor de pull requests. Use quando precisar de uma revisão completa de um PR ou branch: segurança, lógica, testes, cobertura e qualidade de código.
 tools: ["read", "search", "todo"]
-infer: true
+user-invocable: true
 ---
 
 # PR Reviewer

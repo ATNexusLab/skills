@@ -1,8 +1,6 @@
 ---
 name: github-operations
 description: Use quando precisar executar operações no GitHub via CLI ou API: criar issues, PRs, releases, gerenciar branches, labels, milestones e workflows.
-type: skill
-targets: [copilot-cli, gemini-cli, antigravity]
 ---
 
 # GitHub Operations

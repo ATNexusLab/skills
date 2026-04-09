@@ -1,8 +1,6 @@
 ---
 name: mobile-patterns
 description: Use quando precisar implementar features mobile (React Native, Flutter, Swift, Kotlin), configurar builds, resolver problemas de plataforma ou adaptar UI para mobile.
-type: skill
-targets: [copilot-cli, gemini-cli, antigravity]
 ---
 
 # Mobile Patterns

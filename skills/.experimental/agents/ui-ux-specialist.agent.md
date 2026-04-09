@@ -2,7 +2,7 @@
 name: ui-ux-specialist
 description: Especialista em UX. Use quando precisar definir fluxos de usuário, specs de interface, critérios de acessibilidade ou validar experiência do usuário antes de implementar.
 tools: ["read", "search", "edit", "todo"]
-infer: true
+user-invocable: true
 ---
 
 # UI/UX Specialist

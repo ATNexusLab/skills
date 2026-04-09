@@ -1,8 +1,6 @@
 ---
 name: spec-writing
 description: Use quando precisar documentar uma decisão arquitetural, especificar um componente novo ou registrar análise técnica. Produz ADR, Tech Spec ou Architecture Notes baseado no impacto.
-type: skill
-targets: [copilot-cli, gemini-cli, antigravity]
 ---
 
 # Spec Writing

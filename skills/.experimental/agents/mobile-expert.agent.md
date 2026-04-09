@@ -2,7 +2,7 @@
 name: mobile-expert
 description: Engenheiro mobile. Use quando precisar implementar features mobile, resolver problemas de build, otimizar performance nativa ou lidar com especificidades de plataforma (iOS, Android, React Native, Flutter).
 tools: ["read", "search", "edit", "execute", "todo"]
-infer: true
+user-invocable: true
 ---
 
 # Mobile Expert
