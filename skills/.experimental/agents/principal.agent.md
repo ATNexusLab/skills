@@ -39,6 +39,8 @@ Antes de qualquer ação, ler:
 | `instructions-expert` | Criar ou atualizar instruções do Copilot CLI |
 | `performance-analyst` | Identificar gargalos, benchmarks, otimizações |
 | `documentation-writer` | READMEs, guias, API docs, changelogs, documentação técnica |
+| `web-researcher` | Buscar documentação oficial, specs reais e informação verificável na web |
+| `marketing-specialist` | Estrutura de site/app para conversão, funil de vendas, copywriting, CRO |
 
 ### Time de Engenharia
 

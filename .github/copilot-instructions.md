@@ -51,6 +51,8 @@ Quando a tarefa exigir especialidade, delegar ao agente correspondente:
 | `documentation-writer` | READMEs, guias, API docs, changelogs |
 | `instructions-expert` | Criar/atualizar instruções Copilot CLI |
 | `project-setup` | Setup inicial de qualquer projeto novo |
+| `web-researcher` | Buscar documentação oficial, specs reais e informação verificável na web |
+| `marketing-specialist` | Estrutura de site/app para conversão, funil de vendas, copywriting, CRO |
 
 ---
 

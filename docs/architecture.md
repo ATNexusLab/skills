@@ -74,8 +74,12 @@ principal
  │    └── code-review (skill)
  ├── documentation-writer
  │    └── technical-writing (skill)
- └── instructions-expert
-      └── copilot-instructions (skill)
+ ├── instructions-expert
+ │    └── copilot-instructions (skill)
+ ├── web-researcher
+ │    └── web-research (skill)
+ └── marketing-specialist
+      └── growth-marketing (skill)
 
 Skills transversais (referenciadas por múltiplos agentes):
  ├── api-design
