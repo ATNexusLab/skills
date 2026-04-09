@@ -3,10 +3,6 @@ name: devops
 description: Engenheiro DevOps. Use quando precisar configurar CI/CD, Docker, infraestrutura como código, pipelines de deploy, gerenciar ambientes ou automatizar operações de infraestrutura.
 tools: ["read", "search", "edit", "execute", "todo"]
 user-invocable: true
-type: agent
-targets: [copilot-cli]
-license: MIT
-infer: true
 ---
 
 # DevOps

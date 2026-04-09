@@ -1,8 +1,6 @@
 ---
 name: technical-writing
 description: Use quando precisar escrever documentação técnica — READMEs, guias de contribuição, API docs, changelogs, runbooks ou documentação de onboarding.
-type: skill
-targets: [copilot-cli]
 license: MIT
 ---
 

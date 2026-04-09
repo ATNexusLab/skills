@@ -1,8 +1,6 @@
 ---
 name: testing-patterns
 description: Use quando precisar definir estratégia de testes, escrever testes eficazes ou melhorar cobertura. Cobre unit, integration, E2E, mocking, fixtures e anti-patterns.
-type: skill
-targets: [copilot-cli]
 license: MIT
 ---
 

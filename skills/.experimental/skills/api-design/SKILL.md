@@ -1,8 +1,6 @@
 ---
 name: api-design
 description: Use quando precisar projetar APIs REST, GraphQL ou gRPC. Fornece padrões de design, versionamento, paginação, error responses, rate limiting e documentação.
-type: skill
-targets: [copilot-cli]
 license: MIT
 ---
 

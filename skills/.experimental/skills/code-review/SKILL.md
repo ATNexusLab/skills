@@ -1,8 +1,6 @@
 ---
 name: code-review
 description: Use quando precisar revisar código de um PR, branch ou changeset. Fornece checklist estruturado, classificação de severidade e padrões de feedback construtivo.
-type: skill
-targets: [copilot-cli]
 license: MIT
 ---
 

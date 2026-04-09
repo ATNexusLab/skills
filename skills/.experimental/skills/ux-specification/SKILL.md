@@ -1,8 +1,6 @@
 ---
 name: ux-specification
 description: Use quando precisar criar especificações de UX, fluxos de usuário, critérios de acessibilidade ou avaliar decisões de interface. Não implementa — especifica.
-type: skill
-targets: [copilot-cli]
 license: MIT
 ---
 

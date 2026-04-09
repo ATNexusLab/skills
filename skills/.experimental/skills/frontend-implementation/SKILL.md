@@ -1,8 +1,6 @@
 ---
 name: frontend-implementation
 description: Use quando precisar implementar componentes, páginas, formulários ou interfaces web. Fornece padrões de componentização, acessibilidade e qualidade de UI.
-type: skill
-targets: [copilot-cli]
 license: MIT
 ---
 

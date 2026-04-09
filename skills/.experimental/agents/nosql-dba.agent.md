@@ -3,10 +3,6 @@ name: nosql-dba
 description: DBA NoSQL. Use quando precisar modelar dados para bancos não-relacionais (MongoDB, Redis, DynamoDB, Firestore), definir padrões de acesso, estratégias de cache ou resolver problemas de performance NoSQL.
 tools: ["read", "search", "edit", "execute", "todo"]
 user-invocable: true
-type: agent
-targets: [copilot-cli]
-license: MIT
-infer: true
 ---
 
 # NoSQL DBA

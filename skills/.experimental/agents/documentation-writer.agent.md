@@ -3,10 +3,6 @@ name: documentation-writer
 description: Escritor de documentação técnica. Use quando precisar criar ou atualizar READMEs, guias, API docs, changelogs, runbooks ou qualquer documentação voltada a desenvolvedores ou usuários.
 tools: ["read", "search", "edit", "todo"]
 user-invocable: true
-type: agent
-targets: [copilot-cli]
-license: MIT
-infer: true
 ---
 
 # Documentation Writer

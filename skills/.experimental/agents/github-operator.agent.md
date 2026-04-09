@@ -3,10 +3,6 @@ name: github-operator
 description: Operador GitHub. Use quando precisar executar operações GitHub via CLI ou API — issues, pull requests, releases, branches, workflows, labels. Segue Conventional Commits e fluxo de CI/CD.
 tools: ["read", "search", "edit", "execute", "todo"]
 user-invocable: true
-type: agent
-targets: [copilot-cli]
-license: MIT
-infer: true
 ---
 
 # GitHub Operator

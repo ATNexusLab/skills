@@ -3,10 +3,6 @@ name: specs-collector
 description: Analista de requisitos. Use quando precisar levantar requisitos, esclarecer escopo, identificar ambiguidades ou produzir uma spec estruturada antes de implementar qualquer coisa.
 tools: ["read", "search", "edit", "todo"]
 user-invocable: true
-type: agent
-targets: [copilot-cli]
-license: MIT
-infer: true
 ---
 
 # Specs Collector

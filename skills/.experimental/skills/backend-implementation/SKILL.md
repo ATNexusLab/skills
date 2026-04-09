@@ -1,8 +1,6 @@
 ---
 name: backend-implementation
 description: Use quando precisar implementar APIs, serviços, jobs, integrações ou qualquer lógica de servidor. Fornece padrões de implementação, convenções e checklist de validação.
-type: skill
-targets: [copilot-cli]
 license: MIT
 ---
 

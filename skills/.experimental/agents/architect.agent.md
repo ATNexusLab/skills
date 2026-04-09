@@ -3,10 +3,6 @@ name: architect
 description: Arquiteto de software. Use quando precisar tomar decisões técnicas, definir arquitetura, avaliar tradeoffs ou criar documentação de decisão (ADR, Tech Spec, Architecture Notes). Não implementa — lê, questiona e documenta.
 tools: ["read", "search", "edit", "todo"]
 user-invocable: true
-type: agent
-targets: [copilot-cli]
-license: MIT
-infer: true
 ---
 
 # Architect

@@ -1,8 +1,6 @@
 ---
 name: devops-patterns
 description: Use quando precisar configurar CI/CD, Docker, infraestrutura como código, estratégias de deploy ou gerenciamento de ambientes. Padrões e boas práticas de DevOps.
-type: skill
-targets: [copilot-cli]
 license: MIT
 ---
 

@@ -1,8 +1,6 @@
 ---
 name: architecture-reading
 description: Use quando precisar entender a arquitetura atual de um projeto antes de tomar decisões ou iniciar implementação. Mapeia stack, fronteiras, padrões e decisões existentes.
-type: skill
-targets: [copilot-cli]
 license: MIT
 ---
 

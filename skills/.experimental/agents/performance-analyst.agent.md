@@ -3,10 +3,6 @@ name: performance-analyst
 description: Analista de performance. Use quando precisar identificar gargalos, fazer benchmarks, otimizar latência, reduzir consumo de recursos ou melhorar Core Web Vitals. Sempre mede antes de otimizar.
 tools: ["read", "search", "execute", "todo"]
 user-invocable: true
-type: agent
-targets: [copilot-cli]
-license: MIT
-infer: true
 ---
 
 # Performance Analyst

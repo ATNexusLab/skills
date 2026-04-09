@@ -1,8 +1,6 @@
 ---
 name: refactoring
 description: Use quando precisar melhorar código existente sem alterar comportamento. Fornece catálogo de code smells, padrões de refatoração, ordem segura e validação com testes.
-type: skill
-targets: [copilot-cli]
 license: MIT
 ---
 

@@ -3,10 +3,6 @@ name: mobile-expert
 description: Engenheiro mobile. Use quando precisar implementar features mobile, resolver problemas de build, otimizar performance nativa ou lidar com especificidades de plataforma (iOS, Android, React Native, Flutter).
 tools: ["read", "search", "edit", "execute", "todo"]
 user-invocable: true
-type: agent
-targets: [copilot-cli]
-license: MIT
-infer: true
 ---
 
 # Mobile Expert

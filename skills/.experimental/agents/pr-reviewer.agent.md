@@ -3,10 +3,6 @@ name: pr-reviewer
 description: Revisor de pull requests. Use quando precisar de uma revisão completa de um PR ou branch: segurança, lógica, testes, cobertura e qualidade de código.
 tools: ["read", "search", "todo"]
 user-invocable: true
-type: agent
-targets: [copilot-cli]
-license: MIT
-infer: true
 ---
 
 # PR Reviewer

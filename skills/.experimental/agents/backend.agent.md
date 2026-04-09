@@ -3,10 +3,6 @@ name: backend
 description: Engenheiro backend. Use quando precisar implementar APIs, serviços, jobs, integrações de servidor ou qualquer lógica server-side. Segue contratos da spec, aplica padrões de segurança e entrega código testável.
 tools: ["read", "search", "edit", "execute", "todo"]
 user-invocable: true
-type: agent
-targets: [copilot-cli]
-license: MIT
-infer: true
 ---
 
 # Backend

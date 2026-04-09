@@ -3,10 +3,6 @@ name: ui-ux-specialist
 description: Especialista em UX. Use quando precisar definir fluxos de usuário, specs de interface, critérios de acessibilidade ou validar experiência do usuário antes de implementar.
 tools: ["read", "search", "edit", "todo"]
 user-invocable: true
-type: agent
-targets: [copilot-cli]
-license: MIT
-infer: true
 ---
 
 # UI/UX Specialist

@@ -1,8 +1,6 @@
 ---
 name: security-audit
 description: Use quando precisar auditar código, dependências ou configurações por vulnerabilidades. Fornece checklist OWASP, ferramentas por stack, templates de relatório e classificação de severidade.
-type: skill
-targets: [copilot-cli]
 license: MIT
 ---
 
