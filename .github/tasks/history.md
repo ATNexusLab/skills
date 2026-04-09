@@ -13,3 +13,10 @@
   - Reescreveu `README.md`
   - Atualizou `.github/copilot-instructions.md`
   - Post-mortem: Skills + Custom agents são complementares (skill = workflow, agent = persona). 7 mecanismos de customização do Copilot CLI identificados.
+- [x] [CHORE-002] Completar repositório: 9 agentes, refatorar how-to.md, docs, validação — 2026-04-09
+  - Criou 9 agentes: backend, frontend, ui-ux-specialist, mobile-expert, sql-dba, nosql-dba, github-operator, performance-analyst, instructions-expert
+  - Refatorou `how-to.md` em `docs/architecture.md`, `docs/conventions.md`, `ADR-001`
+  - Criou `CONTRIBUTING.md` e `scripts/validate.sh`
+  - Atualizou roster do principal (5→14 agentes), README, copilot-instructions
+  - Review de produção: corrigiu paths `.github/tasks/`, frontmatter de tools, contagens no README
+  - Validação final: 15 agentes ✅, 10 skills ✅
