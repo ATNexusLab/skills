@@ -13,7 +13,7 @@ bunx skills add ATNexusLab/skills
 
 ## O que é este repositório
 
-Um **sistema cognitivo reutilizável** — um time de 15 agentes de IA especializados (14 especialistas + 1 orquestrador) que você puxa para qualquer projeto. Cada agente tem persona, workflow preciso, delegação e restrições de ferramentas definidas.
+Um **sistema cognitivo reutilizável** — um time de 17 agentes de IA especializados (16 especialistas + 1 orquestrador) que você puxa para qualquer projeto. Cada agente tem persona, workflow preciso, delegação e restrições de ferramentas definidas.
 
 > Agent = cérebro (decide o que fazer) · Skill = mão (define como executar) · Instructions = leis · Docs = memória · Tasks = estado
 
@@ -44,8 +44,8 @@ skills/
 │   ├── agents/     ← agentes estáveis, prontos para produção
 │   └── skills/     ← skills estáveis, prontas para produção
 ├── .experimental/
-│   ├── agents/     ← 15 agentes em desenvolvimento (.agent.md)
-│   └── skills/     ← 10 skills em desenvolvimento (SKILL.md)
+│   ├── agents/     ← 17 agentes em desenvolvimento (.agent.md)
+│   └── skills/     ← 17 skills em desenvolvimento (SKILL.md)
 └── .system/
     ├── template/           ← template de referência (spec completa)
     └── creating-agents/    ← meta-agente para criar novos agentes
@@ -60,7 +60,7 @@ Cada agente em `.experimental/agents/` é um arquivo `.agent.md` (persona + dele
 
 ---
 
-## O Time — 15 Agentes (14 Especialistas + 1 Orquestrador)
+## O Time — 17 Agentes (16 Especialistas + 1 Orquestrador)
 
 ### Orquestrador
 
@@ -79,6 +79,7 @@ Cada agente em `.experimental/agents/` é um arquivo `.agent.md` (persona + dele
 | `security-analyst` | Auditar código, dependências e configurações por vulnerabilidades |
 | `instructions-expert` | Criar ou atualizar instruções do Copilot CLI (todos os 5 tipos) |
 | `performance-analyst` | Identificar gargalos com dados, fazer benchmarks e otimizar |
+| `documentation-writer` | Criar READMEs, guias, API docs, changelogs, runbooks |
 
 ### Time de Engenharia
 
@@ -89,6 +90,7 @@ Cada agente em `.experimental/agents/` é um arquivo `.agent.md` (persona + dele
 | `frontend` | Implementar componentes, páginas e interfaces web |
 | `ui-ux-specialist` | Criar specs de UX, fluxos de usuário e critérios de acessibilidade |
 | `mobile-expert` | Implementar features mobile (React Native, Flutter, Swift, Kotlin) |
+| `devops` | CI/CD, Docker, IaC, pipelines, deploys, ambientes |
 | `sql-dba` | Schemas SQL, migrations, queries complexas e índices |
 | `nosql-dba` | Modelagem NoSQL orientada a padrões de acesso |
 

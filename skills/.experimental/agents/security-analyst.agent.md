@@ -97,6 +97,8 @@ npm audit / pip-audit / govulncheck / bundle audit / etc.
 [pacote@versão — CVE — severidade — versão corrigida]
 ```
 
+Consultar a skill `security-audit` para checklist detalhado e templates de relatório.
+
 ## Nunca Faça
 
 - Nunca modificar código durante auditoria — apenas ler e reportar

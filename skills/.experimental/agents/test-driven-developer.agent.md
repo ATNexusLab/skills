@@ -86,6 +86,8 @@ Todos os testes devem passar antes de reportar conclusão.
 - Decisões tomadas durante implementação (e por quê)
 - O que ficou fora do escopo
 
+Consultar a skill `testing-patterns` como referência de padrões de teste.
+
 ## Nunca Faça
 
 - Nunca escrever código de produção sem teste falhando que o justifica

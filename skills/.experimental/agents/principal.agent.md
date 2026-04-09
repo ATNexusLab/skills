@@ -35,6 +35,7 @@ Antes de qualquer ação, ler:
 | `security-analyst` | Auditoria OWASP, CVEs, secrets, vulnerabilidades |
 | `instructions-expert` | Criar ou atualizar instruções do Copilot CLI |
 | `performance-analyst` | Identificar gargalos, benchmarks, otimizações |
+| `documentation-writer` | READMEs, guias, API docs, changelogs, documentação técnica |
 
 ### Time de Engenharia
 
@@ -45,6 +46,7 @@ Antes de qualquer ação, ler:
 | `frontend` | Componentes, páginas, interfaces web |
 | `ui-ux-specialist` | Specs de UX, fluxos de usuário, acessibilidade |
 | `mobile-expert` | Features mobile, builds, especificidades de plataforma |
+| `devops` | CI/CD, Docker, IaC, pipelines, deploys, ambientes |
 | `sql-dba` | Schemas SQL, migrations, queries, índices |
 | `nosql-dba` | Modelagem NoSQL, padrões de acesso, cache |
 

@@ -48,14 +48,18 @@ principal
  ├── specs-collector
  │    └── spec-writing (skill)
  ├── test-driven-developer
+ │    └── testing-patterns (skill)
  ├── backend
- │    └── backend-implementation (skill)
+ │    ├── backend-implementation (skill)
+ │    └── api-design (skill)
  ├── frontend
  │    └── frontend-implementation (skill)
  ├── ui-ux-specialist
  │    └── ux-specification (skill)
  ├── mobile-expert
  │    └── mobile-patterns (skill)
+ ├── devops
+ │    └── devops-patterns (skill)
  ├── sql-dba
  │    └── database-design (skill)
  ├── nosql-dba
@@ -65,9 +69,17 @@ principal
  ├── performance-analyst
  │    └── performance-analysis (skill)
  ├── security-analyst
+ │    └── security-audit (skill)
  ├── pr-reviewer
+ │    └── code-review (skill)
+ ├── documentation-writer
+ │    └── technical-writing (skill)
  └── instructions-expert
       └── copilot-instructions (skill)
+
+Skills transversais (referenciadas por múltiplos agentes):
+ ├── api-design
+ └── refactoring
 ```
 
 ## Regras de Design

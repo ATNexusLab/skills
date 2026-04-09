@@ -19,3 +19,5 @@ Registro de lições aprendidas durante o desenvolvimento e manutenção deste r
 [2026-04-09] [PATHS] Arquivos operacionais do repo (todo.md, history.md, lessons.md) vivem em `.github/tasks/`, não em `tasks/`. Agentes devem sempre referenciar o path completo `.github/tasks/` para evitar ambiguidade. Review encontrou 8+ ocorrências do path incorreto em 3 agentes originais.
 
 [2026-04-09] [GENERICIDADE] Skills e agentes NUNCA devem referenciar paths hardcoded de um projeto específico (ex: `docs/context/architecture.md`). O repo é genérico — skills/agents devem usar instruções de discovery ("buscar documentação do projeto") em vez de assumir estrutura de diretórios. Encontradas 15+ ocorrências em 7 arquivos.
+
+[2026-04-09] [COMPLETUDE] Todo agente DEVE ter uma skill par com workflow detalhado. Agent = persona leve (50-150 linhas), skill = procedimento rico (100-300 linhas). Três agentes originais (test-driven-developer, security-analyst, pr-reviewer) foram criados sem skill par — corrigido na FEAT-001.

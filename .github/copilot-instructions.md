@@ -41,12 +41,14 @@ Quando a tarefa exigir especialidade, delegar ao agente correspondente:
 | `frontend` | Componentes, páginas, interfaces web |
 | `ui-ux-specialist` | Spec de UX, fluxos, acessibilidade |
 | `mobile-expert` | Features mobile, builds, plataforma |
+| `devops` | CI/CD, Docker, IaC, pipelines, deploys |
 | `sql-dba` | Schemas SQL, migrations, queries |
 | `nosql-dba` | Modelagem NoSQL, padrões de acesso |
 | `pr-reviewer` | Review de PRs (segurança, lógica, testes) |
 | `security-analyst` | Auditoria OWASP, CVEs, secrets |
 | `github-operator` | Operações GitHub CLI/API |
 | `performance-analyst` | Profiling, benchmarks, otimizações |
+| `documentation-writer` | READMEs, guias, API docs, changelogs |
 | `instructions-expert` | Criar/atualizar instruções Copilot CLI |
 
 ---

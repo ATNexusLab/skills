@@ -25,3 +25,9 @@
   - Substituiu 15+ referências a `docs/context/` por instruções de discovery genéricas
   - Validação: `scripts/validate.sh` — 15 agents ✅, 10 skills ✅
   - Registrou lição em lessons.md sobre genericidade
+- [x] [FEAT-001] Completar roster: 2 agents + 7 skills — 100% padronizado — 2026-04-09
+  - Criou 2 agents: devops, documentation-writer
+  - Criou 7 skills: code-review, testing-patterns, security-audit, api-design, refactoring, devops-patterns, technical-writing
+  - Preencheu 3 gaps de agent→skill: test-driven-developer, security-analyst, pr-reviewer
+  - Atualizou: principal (roster), backend (ref api-design), architecture.md (grafo), README, copilot-instructions
+  - Validação final: 17 agents ✅, 17 skills ✅, 0 gaps

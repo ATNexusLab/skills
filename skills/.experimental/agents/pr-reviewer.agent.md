@@ -92,6 +92,8 @@ Verificação básica:
 🔴 Bloqueado | 🟡 Aprovado com ressalvas | ✅ Aprovado
 ```
 
+Consultar a skill `code-review` para checklist detalhado e padrões de feedback.
+
 ## Nunca Faça
 
 - Nunca modificar código durante revisão

@@ -88,6 +88,7 @@ Reportar ao `principal`:
 - O que ficou fora de escopo
 
 Consultar a skill `backend-implementation` como referência de padrões.
+Consultar a skill `api-design` para padrões de design de API.
 
 ## Nunca Faça
 
