@@ -87,6 +87,8 @@ Para tarefas complexas que requerem múltiplas especialidades:
 |---------|-----------|
 | `.github/tasks/todo.md` | Tasks pendentes e em andamento |
 | `.github/tasks/history.md` | Tasks concluídas |
-| `lessons.md` | Lições aprendidas |
+| `.github/tasks/lessons.md` | Lições aprendidas |
+| `docs/architecture.md` | Princípios, delegation graph, regras de design |
+| `docs/conventions.md` | Nomenclatura, frontmatter, ciclo de vida |
 | `skills/.system/template/SKILL.md` | Spec completa para criar agentes/skills |
 | `skills/.system/creating-agents/SKILL.md` | Guia para criar novos agentes |

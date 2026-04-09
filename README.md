@@ -1,7 +1,7 @@
 # ATNexusLab/skills — Repositório de Agentes
 
 Repositório central de **agentes e skills** da organização ATNexusLab.  
-Compatível com o ecossistema [skills.sh](https://skills.sh) — instale em qualquer projeto com um único comando:
+Compatível com o ecossistema [skills.sh](https://skills.sh) e o open standard [agentskills.io](https://agentskills.io) — instale em qualquer projeto com um único comando:
 
 ```sh
 npx skills add ATNexusLab/skills
@@ -13,7 +13,9 @@ bunx skills add ATNexusLab/skills
 
 ## O que é este repositório
 
-Um **time de IA reutilizável** que você puxa para qualquer projeto. Cada agente é um especialista com persona, workflow preciso e restrições de ferramentas definidas. O objetivo é ter o mesmo time de alta qualidade em todos os projetos da organização.
+Um **sistema cognitivo reutilizável** — um time de 14 agentes de IA especializados que você puxa para qualquer projeto. Cada agente tem persona, workflow preciso, delegação e restrições de ferramentas definidas.
+
+> Agent = cérebro (decide o que fazer) · Skill = mão (define como executar) · Instructions = leis · Docs = memória · Tasks = estado
 
 ### Arquitetura de Duas Camadas
 
@@ -28,7 +30,7 @@ CAMADA 2 — Projeto (via npx install)
 projeto/
 ├── .github/
 │   ├── copilot-instructions.md          ← orquestrador lean do projeto
-│   ├── agents/                          ← custom agents ativos (.agent.md copiados daqui)
+│   ├── agents/                          ← custom agents ativos
 │   └── skills/                          ← skills instaladas automaticamente
 ```
 
@@ -42,23 +44,29 @@ skills/
 │   ├── agents/     ← agentes estáveis, prontos para produção
 │   └── skills/     ← skills estáveis, prontas para produção
 ├── .experimental/
-│   ├── agents/     ← 14 agentes em desenvolvimento (SKILL.md + .agent.md)
-│   └── skills/     ← skills em desenvolvimento
+│   ├── agents/     ← 15 agentes em desenvolvimento (.agent.md)
+│   └── skills/     ← 10 skills em desenvolvimento (SKILL.md)
 └── .system/
     ├── template/           ← template de referência (spec completa)
     └── creating-agents/    ← meta-agente para criar novos agentes
+
+docs/
+├── architecture.md         ← princípios, delegation graph, regras de design
+├── conventions.md          ← nomenclatura, frontmatter, ciclo de vida
+└── context/decisions/      ← ADRs (decisões arquiteturais)
 ```
 
-Cada agente em `.experimental/agents/` contém dois arquivos:
-
-| Arquivo | Propósito |
-|---------|-----------|
-| `SKILL.md` | Workflow detalhado — carregado automaticamente como skill |
-| `NOME.agent.md` | Template de custom agent — copie para `.github/agents/` no seu projeto |
+Cada agente em `.experimental/agents/` é um arquivo `.agent.md` (persona + delegação). As skills correspondentes ficam em `.experimental/skills/` como `SKILL.md` (workflow detalhado).
 
 ---
 
-## O Time — 14 Agentes
+## O Time — 14 Agentes + 1 Orquestrador
+
+### Orquestrador
+
+| Agente | Quando Usar |
+|--------|-------------|
+| `principal` | Objetivo complexo que requer múltiplas especialidades |
 
 ### Time de Processo
 
@@ -101,7 +109,7 @@ Isso copia os `SKILL.md` para `.github/skills/` do projeto. As skills são carre
 Para que um agente tenha contexto próprio (delegação real multi-agent), copie o `.agent.md` para o seu projeto:
 
 ```sh
-cp skills/.experimental/agents/pr-reviewer/pr-reviewer.agent.md .github/agents/
+cp skills/.experimental/agents/pr-reviewer.agent.md .github/agents/
 ```
 
 ### Configuração Global Pessoal
@@ -109,9 +117,19 @@ cp skills/.experimental/agents/pr-reviewer/pr-reviewer.agent.md .github/agents/
 Para ter o time disponível em todos os seus projetos:
 
 ```sh
-cp skills/.experimental/agents/*/SKILL.md ~/.copilot/skills/
-cp skills/.experimental/agents/*/*.agent.md ~/.copilot/agents/
+cp skills/.experimental/agents/*.agent.md ~/.copilot/agents/
+cp skills/.experimental/skills/*/SKILL.md ~/.copilot/skills/
 ```
+
+---
+
+## Documentação
+
+| Documento | Conteúdo |
+|-----------|----------|
+| [docs/architecture.md](docs/architecture.md) | Princípios, delegation graph, regras de design, anti-patterns |
+| [docs/conventions.md](docs/conventions.md) | Nomenclatura, frontmatter obrigatório, ciclo de vida |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Como contribuir, criar agentes, regras de PR |
 
 ---
 
@@ -119,6 +137,8 @@ cp skills/.experimental/agents/*/*.agent.md ~/.copilot/agents/
 
 Use a skill `creating-agents` (disponível após install) ou siga o template em `skills/.system/template/SKILL.md`.
 
+Leia o [CONTRIBUTING.md](CONTRIBUTING.md) para regras e processo.
+
 ---
 
-**Repositório:** ATNexusLab/skills | **Idioma:** pt-BR | **Status:** Experimental
+**Repositório:** ATNexusLab/skills | **Idioma:** pt-BR | **Status:** Experimental | **Standard:** [agentskills.io](https://agentskills.io)

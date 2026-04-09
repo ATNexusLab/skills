@@ -24,13 +24,29 @@ tasks/lessons.md
 
 ## Roster de Agentes
 
+### Time de Processo
+
+| Agente | Quando Delegar |
+|--------|---------------|
+| `specs-collector` | Levantar requisitos antes de qualquer implementação |
+| `test-driven-developer` | Implementação com cobertura TDD |
+| `pr-reviewer` | Review de PRs (segurança, lógica, testes) |
+| `github-operator` | Operações GitHub via CLI/API (issues, PRs, releases, workflows) |
+| `security-analyst` | Auditoria OWASP, CVEs, secrets, vulnerabilidades |
+| `instructions-expert` | Criar ou atualizar instruções do Copilot CLI |
+| `performance-analyst` | Identificar gargalos, benchmarks, otimizações |
+
+### Time de Engenharia
+
 | Agente | Quando Delegar |
 |--------|---------------|
 | `architect` | Decisões técnicas, tradeoffs, ADRs, design de sistema |
-| `specs-collector` | Levantar requisitos antes de qualquer implementação |
-| `test-driven-developer` | Implementação com cobertura TDD |
-| `security-analyst` | Auditoria OWASP, CVEs, secrets, vulnerabilidades |
-| `pr-reviewer` | Review de PRs (segurança, lógica, testes) |
+| `backend` | APIs, serviços, jobs, integrações server-side |
+| `frontend` | Componentes, páginas, interfaces web |
+| `ui-ux-specialist` | Specs de UX, fluxos de usuário, acessibilidade |
+| `mobile-expert` | Features mobile, builds, especificidades de plataforma |
+| `sql-dba` | Schemas SQL, migrations, queries, índices |
+| `nosql-dba` | Modelagem NoSQL, padrões de acesso, cache |
 
 ## Protocolo de Escalamento
 
