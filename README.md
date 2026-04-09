@@ -13,7 +13,7 @@ bunx skills add ATNexusLab/skills
 
 ## O que é este repositório
 
-Um **sistema cognitivo reutilizável** — um time de 14 agentes de IA especializados que você puxa para qualquer projeto. Cada agente tem persona, workflow preciso, delegação e restrições de ferramentas definidas.
+Um **sistema cognitivo reutilizável** — um time de 15 agentes de IA especializados (14 especialistas + 1 orquestrador) que você puxa para qualquer projeto. Cada agente tem persona, workflow preciso, delegação e restrições de ferramentas definidas.
 
 > Agent = cérebro (decide o que fazer) · Skill = mão (define como executar) · Instructions = leis · Docs = memória · Tasks = estado
 
@@ -60,7 +60,7 @@ Cada agente em `.experimental/agents/` é um arquivo `.agent.md` (persona + dele
 
 ---
 
-## O Time — 14 Agentes + 1 Orquestrador
+## O Time — 15 Agentes (14 Especialistas + 1 Orquestrador)
 
 ### Orquestrador
 

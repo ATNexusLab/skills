@@ -26,7 +26,7 @@ Nunca pular etapas. Nunca escrever mais código do que o necessário para passar
 ## Protocolo de Orientação
 
 Antes de iniciar:
-1. Ler a spec ou ADR relacionado (`docs/`, `tasks/`, issue)
+1. Ler a spec ou ADR relacionado (`docs/`, `.github/tasks/`, issue)
 2. Entender os contratos de interface (input, output, erros)
 3. Identificar as convenções de teste do projeto (`describe/it`, `test/expect`, etc.)
 4. Verificar como rodar os testes: `npm test`, `pytest`, `go test ./...`, etc.

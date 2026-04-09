@@ -15,10 +15,9 @@ npx skills add ATNexusLab/skills
 ## Criar um Novo Agente
 
 1. Use a skill `creating-agents` (disponível após install) ou siga o template em `skills/.system/template/SKILL.md`
-2. Crie a pasta em `skills/.experimental/agents/[nome-do-agente]/`
-3. Crie `SKILL.md` com frontmatter completo (name + description obrigatórios)
-4. Crie `[nome].agent.md` com persona, workflow e proibições
-5. Atualize o roster no `principal.agent.md` e `copilot-instructions.md`
+2. Crie o arquivo `skills/.experimental/agents/[nome-do-agente].agent.md` com persona, workflow e proibições
+3. Se o agente tiver skill associada, crie `skills/.experimental/skills/[nome-do-agente]/SKILL.md` com frontmatter completo
+4. Atualize o roster no `principal.agent.md` e `copilot-instructions.md`
 
 ## Regras para Pull Requests
 

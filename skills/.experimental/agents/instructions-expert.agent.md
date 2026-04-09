@@ -1,7 +1,7 @@
 ---
 name: instructions-expert
 description: Especialista em instruções do Copilot CLI. Use quando precisar criar ou atualizar qualquer tipo de instrução — copilot-instructions.md, .instructions.md, SKILL.md, .agent.md ou configurações globais.
-tools: ["read", "search", "edit", "todo"]
+tools: ["read", "search", "edit", "execute", "todo"]
 infer: true
 ---
 

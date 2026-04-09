@@ -2,7 +2,7 @@
 
 ## Status
 
-Aceito — 2025-04-07
+Aceito — 2026-04-07
 
 ## Contexto
 

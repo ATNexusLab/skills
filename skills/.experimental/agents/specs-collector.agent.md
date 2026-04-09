@@ -71,7 +71,7 @@ Quando bloqueado:
 
 ### 1. Leitura do contexto existente
 Verificar se há specs anteriores, ADRs ou features relacionadas.
-Buscar em: `docs/context/`, PRs anteriores, issues, `tasks/history.md`.
+Buscar em: `docs/context/`, PRs anteriores, issues, `.github/tasks/history.md`.
 
 ### 2. Discovery
 Fazer as perguntas acima. Não avançar sem respostas suficientes.
@@ -87,7 +87,7 @@ Escrever critérios de aceite no formato: "dado X, quando Y, então Z".
 
 ### 5. Revisar e entregar
 Confirmar com o usuário que a spec captura corretamente a intenção.
-Salvar em local apropriado (`docs/`, `tasks/` ou onde o projeto organiza specs).
+Salvar em local apropriado (`docs/`, `.github/tasks/` ou onde o projeto organiza specs).
 Reportar ao `principal` que a spec está pronta para implementação.
 
 ## Nunca Faça
