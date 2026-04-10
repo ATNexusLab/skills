@@ -31,3 +31,10 @@
   - Preencheu 3 gaps de agent→skill: test-driven-developer, security-analyst, pr-reviewer
   - Atualizou: principal (roster), backend (ref api-design), architecture.md (grafo), README, copilot-instructions
   - Validação final: 17 agents ✅, 17 skills ✅, 0 gaps
+- [x] [REFACTOR-001] Refatorar copilot-instructions.md (Camada 1) + atualizar principal.agent.md (Camada 2) — 2026-04-10
+  - Removeu: Protocolo de Resposta, Roster de Agentes, Protocolo de Escalonamento, Protocolo de Reunião do copilot-instructions.md
+  - Resultado: arquivo lean de 35 linhas (era 102), Camada 1 pura
+  - Adicionou: passo de Aprovação (passo 4) e migração explícita de tasks ao principal.agent.md
+- [x] [REFACTOR-002] Atualizar docs/architecture.md com modelo de 4 camadas — 2026-04-10
+  - Adicionou: "Modelo de 4 Camadas", "Regras de Decisão (Audit)" (Regras A-E), "Níveis de Execução"
+  - Arquivo agora é fonte de verdade formal da arquitetura de camadas

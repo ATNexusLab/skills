@@ -26,3 +26,5 @@ Registro de lições aprendidas durante o desenvolvimento e manutenção deste r
 
 [2025-07-11] [ESTRUTURA] Seção `## Metodologia` vazia antes de sub-seções de conteúdo é anti-padrão. Se a metodologia não tem texto próprio, usar o nome da primeira sub-seção diretamente (ex: `## Princípios`, `## Checklist`). Encontrado em todos os 18 agentes — removido na varredura de julho/2025.
 
+[2026-04-10] [ARQUITETURA] copilot-instructions.md deve ser Camada 1 pura (constituição): contexto, idioma, stack, convenções e referências. Qualquer conteúdo operacional (roster, protocolos, workflows) pertence ao principal.agent.md (Camada 2). Misturar camadas é o erro mais comum e cria duplicação e conflito silencioso.
+

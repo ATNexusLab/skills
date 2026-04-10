@@ -16,6 +16,35 @@ O sistema é composto por **agents** (decisão) e **skills** (execução), organ
 | Docs | Fonte da verdade do sistema | Memória |
 | Tasks | Memória operacional (estado atual) | Estado |
 
+## Modelo de 4 Camadas
+
+O sistema é dividido em quatro camadas com responsabilidades bem definidas:
+
+| Camada | Nome | Arquivo | Responsabilidade |
+|--------|------|---------|-----------------|
+| 1 | Constituição | `copilot-instructions.md` | Regras permanentes e contexto do usuário |
+| 2 | Orquestração | `principal.agent.md` | Coordenação de execução de tarefas complexas |
+| 3 | Especialização | `*.agent.md` | Decisão e execução dentro de uma especialidade |
+| 4 | Procedimento | `SKILL.md` | Execução determinística, checklists, templates |
+
+### Camada 1 — Constituição
+Contém: contexto do usuário, idioma, stack, convenções de código, princípios de engenharia, restrições globais.
+Não contém: roteamento de agentes, lógica operacional, workflows.
+
+### Camada 2 — Orquestração
+Contém: como entender o objetivo, quando decompor, quando perguntar, como planejar, como delegar, como sintetizar, quando registrar estado.
+Não faz: implementar código, tomar decisões especializadas, duplicar lógica de agents/skills.
+
+### Camada 3 — Especialização
+Contém: quando usar, o que faz, o que NÃO faz, workflow específico, formato de saída.
+Deve: tomar decisões dentro da especialidade, delegar execução procedural para skills.
+
+### Camada 4 — Procedimento
+Contém: procedimentos, checklists, templates, recipes.
+Não deve: tomar decisões, interpretar contexto complexo, substituir agents.
+
+> **Regra mestra:** Se um arquivo mistura múltiplas camadas, ele está incorreto.
+
 ## Convergência Cross-Model
 
 O sistema converge entre Copilot CLI e Claude Code:
@@ -117,6 +146,30 @@ Skills transversais (referenciadas por múltiplos agentes):
 | Conhecimento | Docs (nunca duplicar) |
 | Execução | Skills (nunca duplicar) |
 
+### Regras de Decisão (Audit)
+
+**A. Agent vs Skill**
+- Use agent quando o problema exigir: julgamento, análise, tomada de decisão, interpretação de contexto.
+- Use skill quando o problema exigir: execução de procedimento conhecido, checklist repetível, formatação/template, fluxo determinístico.
+- **Agents pensam. Skills executam.**
+
+**B. Responsabilidade única**
+- Um agent não duplica comportamento de outro agent.
+- Um agent não contém procedimentos detalhados de skills.
+- Uma skill não toma decisões.
+
+**C. Não duplicação**
+- O roster de agents existe em apenas um lugar lógico.
+- Evitar repetir descrições de agents, responsabilidades ou regras de uso.
+
+**D. Fail-fast em ambiguidade**
+- Se houver ambiguidade crítica: parar, explicitar a dúvida, solicitar input do usuário.
+- Nunca assumir contexto implícito em: arquitetura, segurança, regras de negócio.
+
+**E. Simplicidade**
+- Preferir soluções simples e explícitas.
+- Evitar: overengineering, abstrações prematuras, comportamento implícito.
+
 ## Anti-Patterns (Erros Fatais)
 
 | Anti-Pattern | Por quê é fatal |
@@ -127,6 +180,26 @@ Skills transversais (referenciadas por múltiplos agentes):
 | ❌ Criar contexto por agent | Contexto é centralizado em docs |
 | ❌ Agents gigantes | Quebrar em skill se crescer |
 | ❌ Skills gigantes sem modularidade | Dividir em skills menores e compostas |
+
+## Níveis de Execução
+
+| Nível | Nome | Quando usar |
+|-------|------|------------|
+| 1 | Direto | Tarefa simples, um agent resolve |
+| 2 | Especializado | Um agent resolve com uso de skills |
+| 3 | Orquestrado | Múltiplos agents, requer `principal` |
+
+> Regra: **Nunca usar nível maior se um menor resolve.**
+
+### Uso de Estado Persistido
+
+Usar `.github/tasks/` apenas quando:
+- Tarefa é multi-etapas
+- Envolve múltiplos agents
+- Exige rastreabilidade
+- Tem duração longa
+
+Evitar overhead em tarefas simples.
 
 ## Memória e Contexto
 

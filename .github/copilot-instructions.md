@@ -8,72 +8,7 @@ Propósito: manter um time de IA reutilizável, instalável em qualquer projeto 
 **Stack deste repositório:** Markdown, YAML frontmatter, Bash (scripts opcionais de agents).  
 **Idioma de todo conteúdo:** Português (pt-BR).
 
----
-
-## Protocolo de Resposta (9 Etapas — Obrigatório)
-
-| # | Ação |
-|---|------|
-| 1 | Receber mensagem |
-| 2 | Consultar: `todo.md`, `history.md`, `lessons.md`, skills relevantes |
-| 3 | Planejar e apresentar ao usuário |
-| 4 | Aguardar aprovação explícita — sem aprovação, não executar |
-| 5 | Registrar task no `todo.md` |
-| 6 | Migrar tasks `[x]` do `todo.md` para `history.md` |
-| 7 | Executar na ordem do `todo.md` |
-| 8 | Atualizar `lessons.md` e documentação |
-| 9 | Relatório final |
-
-> Quando o usuário corrigir um erro, registrar **imediatamente** em `lessons.md`.
-
----
-
-## Roster de Agentes
-
-Quando a tarefa exigir especialidade, delegar ao agente correspondente:
-
-| Agente | Quando Chamar |
-|--------|---------------|
-| `specs-collector` | Levantar requisitos antes de qualquer implementação |
-| `architect` | Decisões técnicas, tradeoffs, ADRs |
-| `test-driven-developer` | Implementação com cobertura TDD |
-| `backend` | APIs, serviços, integrações de servidor |
-| `frontend` | Componentes, páginas, interfaces web |
-| `ui-ux-specialist` | Spec de UX, fluxos, acessibilidade |
-| `mobile-expert` | Features mobile, builds, plataforma |
-| `devops` | CI/CD, Docker, IaC, pipelines, deploys |
-| `sql-dba` | Schemas SQL, migrations, queries |
-| `nosql-dba` | Modelagem NoSQL, padrões de acesso |
-| `pr-reviewer` | Review de PRs (segurança, lógica, testes) |
-| `security-analyst` | Auditoria OWASP, CVEs, secrets |
-| `github-operator` | Operações GitHub CLI/API |
-| `performance-analyst` | Profiling, benchmarks, otimizações |
-| `documentation-writer` | READMEs, guias, API docs, changelogs |
-| `instructions-expert` | Criar/atualizar instruções Copilot CLI |
-| `project-setup` | Setup inicial de qualquer projeto novo |
-| `web-researcher` | Buscar documentação oficial, specs reais e informação verificável na web |
-| `marketing-specialist` | Estrutura de site/app para conversão, funil de vendas, copywriting, CRO |
-
----
-
-## Protocolo de Escalonamento
-
-Quando bloqueado, qualquer agente deve:
-1. **Parar** — não tomar decisões arbitrárias.
-2. Declarar: "Bloqueado em [X]. Contexto: [Y]. Necessito de [agente Z]."
-3. **Reportar ao `principal`** a necessidade e aguardar que ele coordene o próximo passo.
-
-> Findings de segurança críticos: reportar ao `principal` imediatamente com detalhes do finding.
-
----
-
-## Protocolo de Reunião (Multi-Agent)
-
-Para tarefas complexas que requerem múltiplas especialidades:
-1. `principal` recebe o problema e cria plano no `todo.md`.
-2. Delega sequencialmente aos agentes relevantes via subagents.
-3. Cada agente entrega seu resultado antes do próximo iniciar.
-4. `principal` sintetiza e reporta ao usuário.
+Para tarefas complexas que envolvam múltiplas especialidades, o ponto de entrada é o agente `principal`.
 
 ---
 
@@ -83,8 +18,6 @@ Para tarefas complexas que requerem múltiplas especialidades:
 - **Nunca** mova para `.curated/` sem uso real validado em produção.
 - **Nunca** acumule itens `[x]` no `todo.md` — mover para `history.md` antes de nova task.
 - **Nunca** abra PR com trabalho em andamento.
-- **Nunca** tome decisões de arquitetura sem reportar ao `principal` — ele acionará o `architect`.
-- **Nunca** implemente sem spec — reportar ao `principal` para acionar `specs-collector` primeiro.
 
 ---
 

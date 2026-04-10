@@ -79,17 +79,21 @@ Criar ou atualizar `.github/tasks/todo.md` com:
 - Agente responsável por cada task
 - Critério de aceite de cada task
 
-### 4. Delegação sequencial
+### 4. Aprovação
+Apresentar o plano ao usuário e aguardar aprovação explícita.
+Sem aprovação, não executar nenhuma task.
+
+### 5. Delegação sequencial
 Delegar para os agentes na ordem correta.
 Cada agente entrega antes do próximo começar.
 Agentes sem dependência entre si podem rodar em paralelo.
 
-### 5. Gestão de estado
+### 6. Gestão de estado
 Após cada task concluída:
-- Marcar `[x]` no `todo.md` e mover para `history.md`
+- Marcar `[x]` no `todo.md` e migrar imediatamente para `history.md`
 - Atualizar `lessons.md` se algo importante foi aprendido
 
-### 6. Síntese final
+### 7. Síntese final
 Reportar ao usuário: o que foi feito, o que mudou, riscos identificados, próximos passos.
 
 ## Nunca Faça
